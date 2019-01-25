@@ -7,8 +7,22 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <ion-grid>
+      <ion-row>
+          <ion-col col-2><span>Location</span></ion-col>
+          <ion-col col-2><span>Time</span></ion-col>
+          <ion-col col-2><span>Reliable</span></ion-col>
+          <ion-col col-2><span>Safe</span></ion-col>
+          <ion-col col-2><span>Update</span></ion-col>
+          <ion-col col-2><span>Delete</span></ion-col>
+      </ion-row>
+      <ion-row *ngFor="let tap of infos;let i=index">
+        <ion-col col-2>{{tap.location}}</ion-col>
+        <ion-col col-2>{{tap.time}}</ion-col>
+        <ion-col col-2>{{tap.reliable}}</ion-col>
+        <ion-col col-2>{{tap.safety}}</ion-col>
+        <ion-col col-2><button ion-button icon-only outline (click)="updateTap(tap.key)"><ion-icon name="create"></ion-icon></button></ion-col>
+        <ion-col col-2><button ion-button icon-only outline (click)="deleteTaps(tap.key)"><ion-icon name="trash" color="danger"></ion-icon></button></ion-col>
+      </ion-row>
+    </ion-grid>
 </ion-content>
