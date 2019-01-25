@@ -1,17 +1,29 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import firebase, { User } from 'firebase/app';
+import 'firebase/database';
 
-/*
-  Generated class for the TruckProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class TruckProvider {
-
-  constructor(public http: HttpClient) {
-    console.log('Hello TruckProvider Provider');
+  firedata=firebase.database().ref('waterService/trucks/answers');
+  constructor() {
+ 
   }
+  getalltaps() {
 
+    var promise = new Promise((resolve, reject) => {
+      this.firedata.orderByChild('uid').once('value', (snapshot) => {
+        console.log('snap',snapshot.val())
+        let userdata = snapshot.val();
+        let temparr = [];
+        for (var key in userdata) {
+          temparr.push(userdata[key]);
+        }
+        resolve(temparr);
+      }).catch((err) => {
+        reject(err);
+      })
+    })
+    return promise;
+ 
+   }
 }

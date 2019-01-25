@@ -2,29 +2,49 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, ModalController } from 'ionic-angular';
 import firebase, { User } from 'firebase/app';
 import 'firebase/database';
-import { AngularFireDatabase,AngularFireList } from 'angularfire2/database'
 import { TapProvider } from '../../providers/tap/tap';
 import { Observable } from 'rxjs';
 import { UpdatePage } from '../update/update';
+import { UpdatetruckPage } from '../updatetruck/updatetruck';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  newTap;
+   newTap;
    taps=[];
+   isTap=true;
+   isTruck=false;
    tl:Observable<any>
    arrData=[];
-   infos = [];
+   listTaps = [];
+   listTrucks = [];
   
-   ref = firebase.database().ref('waterService/taps/answers/');
-  constructor(public navCtrl: NavController,public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider,private fdb: AngularFireDatabase) {
-   this.ref.on('value', resp => {
-      this.infos = snapshotToArray(resp);
-      console.log('tap',this.infos)
-    });
+   reftap = firebase.database().ref('waterService/taps/answers/');
+   reftruck=firebase.database().ref('waterService/trucks/answers/');
+
+  constructor(public navCtrl: NavController,public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
+
   }
   ionViewDidEnter() {
+     this.uploadTaps();
+     this.uploadtrucks();
+  }
+  uploadTaps(){
+    this.reftap.on('value', resp => {
+      this.listTaps = snapshotToArray(resp);
+      console.log('tap',this.listTaps)
+    });
+    this.tap.getalltaps().then((res: any) => {
+      this.taps=res;
+      console.log('list taps',this.taps);
+    });
+  }
+  uploadtrucks(){
+    this.reftruck.on('value', resp => {
+      this.listTrucks = snapshotToArray(resp);
+      console.log('tap',this.listTrucks)
+    });
     this.tap.getalltaps().then((res: any) => {
       this.taps=res;
       console.log('list taps',this.taps);
@@ -33,15 +53,31 @@ export class HomePage {
   deleteTaps(key){
     firebase.database().ref('waterService/taps/answers/'+key).remove();
   }
+  deleteTruk(key){
+    firebase.database().ref('waterService/trucks/answers/'+key).remove();
+  }
   updateTap(key){
-    let location='13241 - 32144';
-    let addModal = this.modalCtrl.create(UpdatePage,{key:key,location:location});
+    let addModal = this.modalCtrl.create(UpdatePage,{key:key});
     addModal.onDidDismiss(() => {
-      
+ 
     });
     addModal.present();
   }
+  updateTruck(key){
+  let addModal = this.modalCtrl.create(UpdatetruckPage,{key:key});
+  addModal.onDidDismiss(() => {
 
+  });
+  addModal.present();
+}
+  changeTap(){
+    this.isTap=true;
+    this.isTruck=false;
+  }
+  changeTruck(){
+    this.isTruck=true;
+    this.isTap=false;
+  }
  
 }
 export const snapshotToArray = snapshot => {

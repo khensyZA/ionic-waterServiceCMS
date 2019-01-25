@@ -5,14 +5,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import firebase, { User } from 'firebase/app';
 import 'firebase/database';
-
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TapProvider } from '../providers/tap/tap';
 import { TruckProvider } from '../providers/truck/truck';
-import {AngularFireModule} from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database'
 import { UpdatePage } from '../pages/update/update';
+import { UpdatetruckPage } from '../pages/updatetruck/updatetruck';
 
  var config = {
     apiKey: "AIzaSyCDA2SmyMOpqB49eOYtL566O6_QZOQL9zQ",
@@ -28,18 +26,18 @@ import { UpdatePage } from '../pages/update/update';
   declarations: [
     MyApp,
     UpdatePage,
+    UpdatetruckPage,
     HomePage
   ],
   imports: [
     BrowserModule,
-    AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(config),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     UpdatePage,
+    UpdatetruckPage,
     HomePage
   ],
   providers: [
