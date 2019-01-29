@@ -6,6 +6,7 @@ import { TapProvider } from '../../providers/tap/tap';
 import { Observable } from 'rxjs';
 import { UpdatePage } from '../update/update';
 import { UpdatetruckPage } from '../updatetruck/updatetruck';
+import leaflet from 'leaflet';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -19,14 +20,18 @@ export class HomePage {
    arrData=[];
    listTaps = [];
    listTrucks = [];
-  
+   map: any;
    reftap = firebase.database().ref('waterService/taps/answers/');
    reftruck=firebase.database().ref('waterService/trucks/answers/');
 
   constructor(public navCtrl: NavController,public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
 
   }
+  ngOnInit():void{
+    
+  }
   ionViewDidEnter() {
+     this.loadmap();
      this.uploadTaps();
      this.uploadtrucks();
   }
@@ -79,6 +84,26 @@ export class HomePage {
     this.isTap=false;
   }
  
+  loadmap() {
+    this.map = leaflet.map("map").fitWorld();
+    leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attributions: 'www.tphangout.com',
+      maxZoom: 15
+    }).addTo(this.map);
+    this.map.locate({
+      setView: true,
+      maxZoom: 10
+    }).on('locationfound', (e) => {
+      let markerGroup = leaflet.featureGroup();
+      let marker: any = leaflet.marker([e.latitude, e.longitude]).on('click', () => {
+        alert('Marker clicked');
+      })
+      markerGroup.addLayer(marker);
+      this.map.addLayer(markerGroup);
+      }).on('locationerror', (err) => {
+        alert(err.message);
+      })
+  }
 }
 export const snapshotToArray = snapshot => {
   let returnArr = [];
@@ -90,4 +115,4 @@ export const snapshotToArray = snapshot => {
   });
 
   return returnArr;
-};
+}

@@ -3,11 +3,20 @@
     <ion-title>
       
     </ion-title>
-    <ion-buttons start>
-      <button ion-button (click)="changeTap()">
+    <ion-buttons outline> 
+      <button color="primary" ion-button>
+         Dashboard
+      </button>
+      <button color="primary" ion-button>
+        Sign in
+      </button>
+      <button color="primary" ion-button>
+        Sign up
+      </button>
+      <button color="primary" (click)="changeTap()" ion-button>
         Taps
       </button>
-      <button ion-button  (click)="changeTruck()">
+      <button color="primary" (click)=" changeTruck()" ion-button>
         Truck
       </button>
       </ion-buttons>
@@ -15,6 +24,7 @@
 </ion-header>
 
 <ion-content padding>
+  <div id="map"></div>
   <div *ngIf="isTap">
     <ion-grid>
         <ion-row>

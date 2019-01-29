@@ -11,6 +11,7 @@ import { TapProvider } from '../providers/tap/tap';
 import { TruckProvider } from '../providers/truck/truck';
 import { UpdatePage } from '../pages/update/update';
 import { UpdatetruckPage } from '../pages/updatetruck/updatetruck';
+import { MapPage } from '../pages/map/map';
 
  var config = {
     apiKey: "AIzaSyCDA2SmyMOpqB49eOYtL566O6_QZOQL9zQ",
@@ -26,6 +27,7 @@ import { UpdatetruckPage } from '../pages/updatetruck/updatetruck';
   declarations: [
     MyApp,
     UpdatePage,
+    MapPage,
     UpdatetruckPage,
     HomePage
   ],
@@ -37,6 +39,7 @@ import { UpdatetruckPage } from '../pages/updatetruck/updatetruck';
   entryComponents: [
     MyApp,
     UpdatePage,
+    MapPage,
     UpdatetruckPage,
     HomePage
   ],
