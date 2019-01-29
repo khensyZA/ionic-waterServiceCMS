@@ -6,72 +6,76 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>update</ion-title>
+  <ion-navbar color="dark">
+    <ion-title  text-center>update</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-4 text-center>
-        <ion-list>
-          <ion-item no-lines text-center class="item1">
-          <span>Accessible time</span>
-          </ion-item>
-          <ion-item class="op">
-            <ion-label text-wrap>Opening time</ion-label>
-            <ion-select [(ngModel)]="starttime">
-              <ion-option text-wrap *ngFor="let start of startTime">{{start}}</ion-option>
-            </ion-select>
-          </ion-item>
-          <ion-item class="op">
-            <ion-label text-wrap>Closing time</ion-label>
-            <ion-select [(ngModel)]="endtime">
-              <ion-option text-wrap class="op" *ngFor="let start of endTime">{{start}}</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-      <ion-col col-4 text-center>
+  <ion-row>
+  
+      <ion-col col-5  text-center>
         <ion-list  radio-group [(ngModel)]="reliable" class="outline">
           <ion-item no-lines text-center  class="item1">
-          <span>Reliable</span>
+          <ion-card class="outline">Reliable</ion-card>
           </ion-item>
       
           <br>  
           <ion-item class="item1">
-            <ion-label>Yes</ion-label>
+            <ion-label color="dark">Yes</ion-label>
             <ion-radio value="Yes"></ion-radio>
           </ion-item>
         
           <ion-item class="item1">
-            <ion-label>No</ion-label>
+            <ion-label color="dark">No</ion-label>
             <ion-radio value="No"></ion-radio>
           </ion-item>
         </ion-list>
       </ion-col>
-      <ion-col col-4 text-center>
+
+      <ion-col col-5 text-center>
         <ion-list radio-group [(ngModel)]="safety" class="outline">
           <ion-item no-lines text-center  class="item1">
-           <span text-wrap>Safety</span>
+           <ion-card class="outline">Safety</ion-card>
            </ion-item>
            
            <br>  
            <ion-item  class="item1">
-             <ion-label>Yes</ion-label>
+             <ion-label color="dark">Yes</ion-label>
              <ion-radio value="Yes"></ion-radio>
            </ion-item>
      
            <ion-item  class="item1">
-             <ion-label>No</ion-label>
+             <ion-label color="dark">No</ion-label>
              <ion-radio value="No"></ion-radio>
            </ion-item>
           </ion-list>
       </ion-col>
+
+        <ion-col col-5 text-center>
+    <ion-list>
+     <ion-item no-lines text-center class="item1">
+      <ion-card class="outline">Accessible time</ion-card>
+      </ion-item>
+      <ion-item class="op">
+      <ion-label color="dark" text-wrap>Opening time</ion-label>
+      <ion-select [(ngModel)]="starttime">
+      <ion-option text-wrap *ngFor="let start of startTime">{{start}}</ion-option>
+      </ion-select>
+      </ion-item>
+      <ion-item class="op">
+      <ion-label color="dark" text-wrap>Closing time</ion-label>
+      <ion-select   [(ngModel)]="endtime">
+      <ion-option text-wrap *ngFor="let start of endTime">{{start}}</ion-option>
+      </ion-select>
+      </ion-item>
+      </ion-list>
+      </ion-col>
+      
     </ion-row>
-  </ion-grid>
-  <button ion-button full outline (click)="updateTap()">update</button>
+
+
+  <button ion-button full block outline color="dark" (click)="updateTap()">update</button>
 </ion-content>

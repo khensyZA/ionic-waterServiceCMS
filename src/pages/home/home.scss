@@ -1,3 +1,21 @@
 page-home {
+ .header .col {
+    background-color: #005792;
+ }
 
+  .col {
+      
+       border: solid 1px grey;
+      border-bottom-style: none;
+        border-right-style: none;
+         border-right: solid 1px grey;
+  }
+
+//   .col:last-child {
+//     border-right: solid 1px grey;
+//  }
+
+ .row:last-child .col {
+     border-bottom: solid 1px grey;
+ }
 }
