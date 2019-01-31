@@ -33,7 +33,7 @@ export class UpdatePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad UpdatePage');
   }
-
+ 
   updateTap(){
       this.updateFire=firebase.database().ref('waterService/taps/answers/'+this.key);
       this.time=this.starttime+' - '+this.endtime;

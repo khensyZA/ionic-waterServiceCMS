@@ -12,6 +12,7 @@ import { TruckProvider } from '../providers/truck/truck';
 import { UpdatePage } from '../pages/update/update';
 import { UpdatetruckPage } from '../pages/updatetruck/updatetruck';
 import { MapPage } from '../pages/map/map';
+import { MarkersProvider } from '../providers/markers/markers';
 
  var config = {
     apiKey: "AIzaSyCDA2SmyMOpqB49eOYtL566O6_QZOQL9zQ",
@@ -48,7 +49,8 @@ import { MapPage } from '../pages/map/map';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TapProvider,
-    TruckProvider
+    TruckProvider,
+    MarkersProvider
   ]
 })
 export class AppModule {}

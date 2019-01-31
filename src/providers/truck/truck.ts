@@ -8,7 +8,7 @@ export class TruckProvider {
   constructor() {
  
   }
-  getalltaps() {
+  getalltrucks() {
 
     var promise = new Promise((resolve, reject) => {
       this.firedata.orderByChild('uid').once('value', (snapshot) => {

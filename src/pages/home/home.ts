@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { UpdatePage } from '../update/update';
 import { UpdatetruckPage } from '../updatetruck/updatetruck';
 import leaflet from 'leaflet';
+import { ThrowStmt } from '@angular/compiler';
+import { TruckProvider } from '../../providers/truck/truck';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -14,6 +16,7 @@ import leaflet from 'leaflet';
 export class HomePage {
    newTap;
    taps=[];
+   trucks=[];
    isTap=true;
    isTruck=false;
    tl:Observable<any>
@@ -21,52 +24,61 @@ export class HomePage {
    listTaps = [];
    listTrucks = [];
    map: any;
+   tapLatitude=[];
+   taplongitude=[];
+   truckLatitude=[];
+   trucklongitude=[];
    reftap = firebase.database().ref('waterService/taps/answers/');
    reftruck=firebase.database().ref('waterService/trucks/answers/');
 
-  constructor(public navCtrl: NavController,public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
+  constructor(public navCtrl: NavController,private truck:TruckProvider, public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
 
   }
   ngOnInit():void{
     
   }
   ionViewDidEnter() {
+  
      this.loadmap();
      this.uploadTaps();
      this.uploadtrucks();
+    
+    
   }
   uploadTaps(){
     this.reftap.on('value', resp => {
       this.listTaps = snapshotToArray(resp);
-      console.log('tap',this.listTaps)
     });
     this.tap.getalltaps().then((res: any) => {
       this.taps=res;
-      console.log('list taps',this.taps);
+      this.addTapmakers();
     });
   }
   uploadtrucks(){
     this.reftruck.on('value', resp => {
       this.listTrucks = snapshotToArray(resp);
-      console.log('tap',this.listTrucks)
+ 
     });
-    this.tap.getalltaps().then((res: any) => {
-      this.taps=res;
-      console.log('list taps',this.taps);
+    this.truck.getalltrucks().then((res: any) => {
+      this.trucks=res;
+       this.addTruckmakers();
     });
   }
+
   deleteTaps(key){
     firebase.database().ref('waterService/taps/answers/'+key).remove();
   }
   deleteTruk(key){
     firebase.database().ref('waterService/trucks/answers/'+key).remove();
   }
+  updateFire:firebase.database.Reference;
   updateTap(key){
     let addModal = this.modalCtrl.create(UpdatePage,{key:key});
     addModal.onDidDismiss(() => {
  
     });
     addModal.present();
+
   }
   updateTruck(key){
   let addModal = this.modalCtrl.create(UpdatetruckPage,{key:key});
@@ -88,21 +100,89 @@ export class HomePage {
     this.map = leaflet.map("map").fitWorld();
     leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attributions: 'www.tphangout.com',
-      maxZoom: 15
+      maxZoom: 100
     }).addTo(this.map);
-    this.map.locate({
-      setView: true,
-      maxZoom: 10
-    }).on('locationfound', (e) => {
+    var map = this.map;
+
+    map.locate({ setView: true,  
+      maxZoom: 100});
+
+  }
+
+  addTapmakers(){
+
+    const myCustomColour = 'limegreen'
+    const markerHtmlStyles = `
+    background-color: ${myCustomColour};
+    width: 3rem;
+    height: 3rem;
+    display: block;
+    left: -1.5rem;
+    top: -1.5rem;
+    position: relative;
+    border-radius: 3rem 3rem 0;
+    transform: rotate(45deg);
+    border: 2px solid #FFFFFF`
+const redMarker = leaflet.divIcon({
+  className: "my-custom-pin",
+  iconAnchor: [0, 24],
+  labelAnchor: [-6, 0],
+  popupAnchor: [0, -36],
+  html: `<span style="${markerHtmlStyles}" />`
+})
+    for(var i=0;i<this.taps.length;i++){
+      this.tapLatitude.push(this.taps[i].latitude);
+      this.taplongitude.push(this.taps[i].longitude);
+       }
+    console.log('latitude',this.tapLatitude);
+    console.log('longitude',this.taplongitude);
+    for(var i=0;i<this.tapLatitude.length;i++){
+  
       let markerGroup = leaflet.featureGroup();
-      let marker: any = leaflet.marker([e.latitude, e.longitude]).on('click', () => {
+      let marker: any = leaflet.marker([this.tapLatitude[i],this.taplongitude[i]],{icon:redMarker}).on('click', () => {
         alert('Marker clicked');
       })
       markerGroup.addLayer(marker);
       this.map.addLayer(markerGroup);
-      }).on('locationerror', (err) => {
-        alert(err.message);
+    }
+    
+  }
+  addTruckmakers(){
+    const myCustomColour = 'red'
+    const markerHtmlStyles = `
+    background-color: ${myCustomColour};
+    width: 3rem;
+    height: 3rem;
+    display: block;
+    left: -1.5rem;
+    top: -1.5rem;
+    position: relative;
+    border-radius: 3rem 3rem 0;
+    transform: rotate(45deg);
+    border: 2px solid #FFFFFF`
+const redMarker = leaflet.divIcon({
+  className: "my-custom-pin",
+  iconAnchor: [0, 24],
+  labelAnchor: [-6, 0],
+  popupAnchor: [0, -36],
+  html: `<span style="${markerHtmlStyles}" />`
+})
+    for(var i=0;i<this.trucks.length;i++){
+      this.truckLatitude.push(this.trucks[i].latitude);
+      this.trucklongitude.push(this.trucks[i].longitude);
+       }
+    console.log('latitude',this.truckLatitude);
+    console.log('longitude',this.trucklongitude);
+    for(var i=0;i<this.truckLatitude.length;i++){
+   
+      let markerGroup = leaflet.featureGroup();
+      let marker: any = leaflet.marker([this.truckLatitude[i],this.trucklongitude[i]],{icon:redMarker}).on('click', () => {
+        alert('Marker clicked');
       })
+      markerGroup.addLayer(marker);
+      this.map.addLayer(markerGroup);
+    }
+    
   }
 }
 export const snapshotToArray = snapshot => {
