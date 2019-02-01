@@ -13,6 +13,9 @@ import { UpdatePage } from '../pages/update/update';
 import { UpdatetruckPage } from '../pages/updatetruck/updatetruck';
 import { MapPage } from '../pages/map/map';
 import { MarkersProvider } from '../providers/markers/markers';
+import { Geofence } from '@ionic-native/geofence/ngx';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
 
 
  var config = {
@@ -29,7 +32,9 @@ import { MarkersProvider } from '../providers/markers/markers';
   declarations: [
     MyApp,
     UpdatePage,
+    LoginPage,
     MapPage,
+    RegisterPage,
     UpdatetruckPage,
     HomePage
     
@@ -42,6 +47,8 @@ import { MarkersProvider } from '../providers/markers/markers';
   entryComponents: [
     MyApp,
     UpdatePage,
+    RegisterPage,
+    LoginPage,
     MapPage,
     UpdatetruckPage,
     HomePage
@@ -53,8 +60,13 @@ import { MarkersProvider } from '../providers/markers/markers';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TapProvider,
     TruckProvider,
+<<<<<<< HEAD
     MarkersProvider,
    
+=======
+    Geofence,
+    MarkersProvider
+>>>>>>> 5c290530a8a0bdd43705c0c517d28c206c1ff986
   ]
 })
 export class AppModule {}
