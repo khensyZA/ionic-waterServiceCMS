@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
 import { UpdatePage } from '../update/update';
 import { UpdatetruckPage } from '../updatetruck/updatetruck';
 import leaflet from 'leaflet';
-import { ThrowStmt } from '@angular/compiler';
+import { Geofence } from '@ionic-native/geofence/ngx';
 import { TruckProvider } from '../../providers/truck/truck';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -31,12 +32,21 @@ export class HomePage {
    reftap = firebase.database().ref('waterService/taps/answers/');
    reftruck=firebase.database().ref('waterService/trucks/answers/');
 
-  constructor(public navCtrl: NavController,private truck:TruckProvider, public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
-
-  }
-  ngOnInit():void{
+  constructor(public navCtrl: NavController,private geofence: Geofence,private truck:TruckProvider, public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
+      // initialize the plugin
+      // geofence.initialize()
+  // geofence.initialize().then(
+    
+  //   // resolved promise does not return a value
+  //   () => 
+  //     console.log('Geofence Plugin Ready'),
+  //   (err) => console.log(err)
+  // )
     
   }
+  // ngOnInit():void{
+  //   this.addGeofence();
+  // }
   ionViewDidEnter() {
   
      this.loadmap();
@@ -50,7 +60,9 @@ export class HomePage {
       this.listTaps = snapshotToArray(resp);
     });
     this.tap.getalltaps().then((res: any) => {
+      console.log()
       this.taps=res;
+      console.log("new taps",this.taps)
       this.addTapmakers();
     });
   }
@@ -100,14 +112,33 @@ export class HomePage {
     this.map = leaflet.map("map").fitWorld();
     leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attributions: 'www.tphangout.com',
-      maxZoom: 100
+      maxZoom: 18
     }).addTo(this.map);
-    var map = this.map;
-
-    map.locate({ setView: true,  
-      maxZoom: 100});
-
-  }
+    this.map.locate({
+      setView: true,
+      maxZoom: 18
+    })
+  //Geofencing
+    .on('locationfound', (e) => {
+      this.map.setView([-26.0063121, 28.2108827], 16);
+      let markerGroup = leaflet.featureGroup();
+      // let marker: any = leaflet.marker([-26.0063121, 28.2108827]);
+      // marker.bindPopup(e.latlng.toString() +"<html>I'm here!</b><html>").openPopup();
+      // markerGroup.addLayer(marker);
+      this.map.addLayer(markerGroup);
+      var circle = leaflet.circle([-26.0063121, 28.2108827], {
+        color: 'coral',
+             fillColor: 'rgba(0.0,0.0,0.0,0.3)',
+          fillOpacity: 0.5,
+          radius: 7500
+       }).addTo(this.map);
+       circle.bindPopup("My area.");
+     }).on('locationerror', (err) => {
+       alert(err.message);
+     });
+  
+     
+    }
 
   addTapmakers(){
 
@@ -123,21 +154,23 @@ export class HomePage {
     border-radius: 3rem 3rem 0;
     transform: rotate(45deg);
     border: 2px solid #FFFFFF`
-const redMarker = leaflet.divIcon({
-  className: "my-custom-pin",
-  iconAnchor: [0, 24],
-  labelAnchor: [-6, 0],
-  popupAnchor: [0, -36],
-  html: `<span style="${markerHtmlStyles}" />`
-})
-    for(var i=0;i<this.taps.length;i++){
+    const redMarker = leaflet.divIcon({
+       className: "my-custom-pin",
+       iconAnchor: [0, 24],
+       labelAnchor: [-6, 0],
+       popupAnchor: [0, -36],
+       html: `<span style="${markerHtmlStyles}" />`
+    })
+
+    for( i=0;i<this.taps.length;i++){
+      console.log("tapss",this.taps)
       this.tapLatitude.push(this.taps[i].latitude);
       this.taplongitude.push(this.taps[i].longitude);
+      console.log("lat",this.tapLatitude)
        }
-    console.log('latitude',this.tapLatitude);
-    console.log('longitude',this.taplongitude);
+       console.log('Geofence addedsss',this.tapLatitude[i]);
     for(var i=0;i<this.tapLatitude.length;i++){
-  
+      console.log('Geofence addedsss',this.tapLatitude[i]);
       let markerGroup = leaflet.featureGroup();
       let marker: any = leaflet.marker([this.tapLatitude[i],this.taplongitude[i]],{icon:redMarker}).on('click', () => {
         alert('Marker clicked');
@@ -160,19 +193,17 @@ const redMarker = leaflet.divIcon({
     border-radius: 3rem 3rem 0;
     transform: rotate(45deg);
     border: 2px solid #FFFFFF`
-const redMarker = leaflet.divIcon({
-  className: "my-custom-pin",
-  iconAnchor: [0, 24],
-  labelAnchor: [-6, 0],
-  popupAnchor: [0, -36],
-  html: `<span style="${markerHtmlStyles}" />`
-})
+    const redMarker = leaflet.divIcon({
+      className: "my-custom-pin",
+      iconAnchor: [0, 24],
+      labelAnchor: [-6, 0],
+      popupAnchor: [0, -36],
+      html: `<span style="${markerHtmlStyles}" />`
+    })
     for(var i=0;i<this.trucks.length;i++){
       this.truckLatitude.push(this.trucks[i].latitude);
       this.trucklongitude.push(this.trucks[i].longitude);
        }
-    console.log('latitude',this.truckLatitude);
-    console.log('longitude',this.trucklongitude);
     for(var i=0;i<this.truckLatitude.length;i++){
    
       let markerGroup = leaflet.featureGroup();
