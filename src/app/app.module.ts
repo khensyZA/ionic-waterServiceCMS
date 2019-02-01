@@ -17,7 +17,6 @@ import { Geofence } from '@ionic-native/geofence/ngx';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 
-
  var config = {
     apiKey: "AIzaSyCDA2SmyMOpqB49eOYtL566O6_QZOQL9zQ",
     authDomain: "waterapp-aa3d2.firebaseapp.com",
@@ -60,13 +59,12 @@ import { RegisterPage } from '../pages/register/register';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TapProvider,
     TruckProvider,
-<<<<<<< HEAD
+
     MarkersProvider,
-   
-=======
+  
     Geofence,
     MarkersProvider
->>>>>>> 5c290530a8a0bdd43705c0c517d28c206c1ff986
+
   ]
 })
 export class AppModule {}

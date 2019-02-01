@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { UpdatePage } from '../update/update';
 import { UpdatetruckPage } from '../updatetruck/updatetruck';
 import leaflet from 'leaflet';
-// import { Geofence } from '@ionic-native/geofence/ngx';
+import { Geofence } from '@ionic-native/geofence/ngx';
 import { TruckProvider } from '../../providers/truck/truck';
 
 @Component({
@@ -32,7 +32,7 @@ export class HomePage {
    reftap = firebase.database().ref('waterService/taps/answers/');
    reftruck=firebase.database().ref('waterService/trucks/answers/');
 
-  constructor(public navCtrl: NavController,private truck:TruckProvider, public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
+  constructor(public navCtrl: NavController,private geofence: Geofence,private truck:TruckProvider, public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
   }
   ionViewDidEnter() {
   
