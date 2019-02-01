@@ -9,6 +9,7 @@ import { UpdatetruckPage } from '../updatetruck/updatetruck';
 import leaflet from 'leaflet';
 import { ThrowStmt } from '@angular/compiler';
 import { TruckProvider } from '../../providers/truck/truck';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -44,6 +45,11 @@ export class HomePage {
      this.uploadtrucks();
     
     
+  }
+
+
+  login(){
+
   }
   uploadTaps(){
     this.reftap.on('value', resp => {
@@ -111,7 +117,7 @@ export class HomePage {
 
   addTapmakers(){
 
-    const myCustomColour = 'limegreen'
+    const myCustomColour = '#18b8d4'
     const markerHtmlStyles = `
     background-color: ${myCustomColour};
     width: 3rem;
@@ -184,6 +190,15 @@ const redMarker = leaflet.divIcon({
     }
     
   }
+
+// logout(){
+//   this.navCtrl.push
+// }
+// login(){
+//   t
+// }
+
+
 }
 export const snapshotToArray = snapshot => {
   let returnArr = [];

@@ -1,18 +1,36 @@
 page-home {
+
+    .main{
+        background-color:#edf9fc;
+    }
     #map{
-        width: 100%;
+        width: 93%;
         height: 60%;
+
+        margin-left:60px;
+        margin-top:40px;
+        border: solid 2px grey;
+    //   border-bottom-style: none;
+        // border-right-style: none;
+         border-right: solid 2px grey;
     }
  .header .col {
     background-color: #005792;
+ 
  }
 
   .col {
-      
+  
        border: solid 1px grey;
-      border-bottom-style: none;
-        border-right-style: none;
-         border-right: solid 1px grey;
+       border-bottom-style: none;
+       border-right-style: none;
+    //    border-top-style: none;
+       border-left-style: solid 2px grey;
+       border-right: solid 1px grey;
+       float: left; 
+       position: relative;
+       left: 60px;
+       
   }
 
 //   .col:last-child {
