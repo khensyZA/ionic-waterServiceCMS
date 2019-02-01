@@ -33,20 +33,7 @@ export class HomePage {
    reftruck=firebase.database().ref('waterService/trucks/answers/');
 
   constructor(public navCtrl: NavController,private geofence: Geofence,private truck:TruckProvider, public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
-      // initialize the plugin
-      // geofence.initialize()
-  // geofence.initialize().then(
-    
-  //   // resolved promise does not return a value
-  //   () => 
-  //     console.log('Geofence Plugin Ready'),
-  //   (err) => console.log(err)
-  // )
-    
   }
-  // ngOnInit():void{
-  //   this.addGeofence();
-  // }
   ionViewDidEnter() {
   
      this.loadmap();
@@ -98,7 +85,7 @@ export class HomePage {
 
   });
   addModal.present();
-}
+  }
   changeTap(){
     this.isTap=true;
     this.isTruck=false;
