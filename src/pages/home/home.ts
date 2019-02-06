@@ -18,8 +18,10 @@ export class HomePage {
    newTap;
    taps=[];
    trucks=[];
+   isHome=true;
    isTap=true;
    isTruck=false;
+   isload=false;
    tl:Observable<any>
    arrData=[];
    listTaps = [];
@@ -75,7 +77,6 @@ export class HomePage {
   deleteTruk(key){
     firebase.database().ref('waterService/trucks/answers/'+key).remove();
   }
-  updateFire:firebase.database.Reference;
   updateTap(key){
     let addModal = this.modalCtrl.create(UpdatePage,{key:key});
     addModal.onDidDismiss(() => {
@@ -104,7 +105,7 @@ export class HomePage {
     this.map = leaflet.map("map").fitWorld();
     leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attributions: 'www.tphangout.com',
-      maxZoom: 18
+      maxZoom: 14
     }).addTo(this.map);
     this.map.locate({
       setView: true,
@@ -134,7 +135,7 @@ export class HomePage {
 
   addTapmakers(){
 
-    const myCustomColour = '#18b8d4'
+    const myCustomColour = 'limegreen'
     const markerHtmlStyles = `
     background-color: ${myCustomColour};
     width: 3rem;
@@ -147,30 +148,36 @@ export class HomePage {
     transform: rotate(45deg);
     border: 2px solid #FFFFFF`
     const redMarker = leaflet.divIcon({
-       className: "my-custom-pin",
-       iconAnchor: [0, 24],
-       labelAnchor: [-6, 0],
-       popupAnchor: [0, -36],
-       html: `<span style="${markerHtmlStyles}" />`
+      className: "my-custom-pin",
+      iconAnchor: [0, 24],
+      labelAnchor: [-6, 0],
+      popupAnchor: [0, -36],
+      html: `<span style="${markerHtmlStyles}" />`
     })
-
-    for( i=0;i<this.taps.length;i++){
-      console.log("tapss",this.taps)
-      this.tapLatitude.push(this.taps[i].latitude);
-      this.taplongitude.push(this.taps[i].longitude);
-      console.log("lat",this.tapLatitude)
+    for( i=0;i<this.listTaps.length;i++){
+      // console.log("tapss",this.taps)
+      this.tapLatitude.push(this.listTaps[i].latitude);
+      this.taplongitude.push(this.listTaps[i].longitude);
+      // console.log("lat",this.tapLatitude)
        }
        console.log('Geofence addedsss',this.tapLatitude[i]);
     for(var i=0;i<this.tapLatitude.length;i++){
       console.log('Geofence addedsss',this.tapLatitude[i]);
       let markerGroup = leaflet.featureGroup();
-      let marker: any = leaflet.marker([this.tapLatitude[i],this.taplongitude[i]],{icon:redMarker}).on('click', () => {
-        alert('Marker clicked');
-      })
+      let marker: any = leaflet.marker([this.tapLatitude[i],this.taplongitude[i]],{icon:redMarker}).bindPopup("Tap ID:"+this.listTaps[i].id+" Time:"+this.listTaps[i].time);
       markerGroup.addLayer(marker);
       this.map.addLayer(markerGroup);
     }
     
+  }
+  loads(){
+    let addModal = this.modalCtrl.create(UpdatePage);
+    addModal.onDidDismiss(() => {
+     
+    });
+    if(this.isload){
+      addModal.present();
+    }
   }
   addTruckmakers(){
     const myCustomColour = 'red'
@@ -192,30 +199,20 @@ export class HomePage {
       popupAnchor: [0, -36],
       html: `<span style="${markerHtmlStyles}" />`
     })
-    for(var i=0;i<this.trucks.length;i++){
-      this.truckLatitude.push(this.trucks[i].latitude);
-      this.trucklongitude.push(this.trucks[i].longitude);
+    for(var i=0;i<this.listTrucks.length;i++){
+      this.truckLatitude.push(this.listTrucks[i].latitude);
+      this.trucklongitude.push(this.listTrucks[i].longitude);
        }
     for(var i=0;i<this.truckLatitude.length;i++){
    
       let markerGroup = leaflet.featureGroup();
-      let marker: any = leaflet.marker([this.truckLatitude[i],this.trucklongitude[i]],{icon:redMarker}).on('click', () => {
-        alert('Marker clicked');
-      })
+      let marker: any = leaflet.marker([this.truckLatitude[i],this.trucklongitude[i]],{icon:redMarker}).bindPopup("Truck:1 time:"+this.trucks[i].time+" days:"+this.trucks[i].days+"");
+     
       markerGroup.addLayer(marker);
       this.map.addLayer(markerGroup);
     }
     
   }
-
-// logout(){
-//   this.navCtrl.push
-// }
-// login(){
-//   t
-// }
-
-
 }
 export const snapshotToArray = snapshot => {
   let returnArr = [];

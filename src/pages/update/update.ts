@@ -21,6 +21,7 @@ export class UpdatePage {
    data=[];
    tap=[];
    taps=[];
+   isChecked=true;
    starttime='';
    endtime='';
    listTaps = [];

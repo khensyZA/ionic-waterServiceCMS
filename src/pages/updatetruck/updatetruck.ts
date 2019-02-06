@@ -60,14 +60,18 @@ export class UpdatetruckPage {
   ionViewDidLoad() {
     
   }
+  lastFive:string;
+
   updateTruck(){
     this.updateFire=firebase.database().ref('waterService/trucks/answers/'+this.key);
     this.time=this.starttime+' - '+this.endtime;
-    this.updatetk(this.days,this.liters,this.reliable,this.time,this.starttime,this.endtime);
+    this.lastFive=this.key.substr(this.key.length -5);
+    console.log('trcuk', this.lastFive);
+    this.updatetk(this.lastFive);
     this.navCtrl.pop();
   }
-  updatetk(days:string,liters:string,reliable:string,time:string,optime:string,clotime:string):Promise<any>{
-     return this.updateFire.update({days,liters,reliable,time,optime,clotime})
+  updatetk(id:string):Promise<any>{
+     return this.updateFire.update({id})
   }
 
 }
