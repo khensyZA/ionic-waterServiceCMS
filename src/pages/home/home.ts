@@ -15,6 +15,7 @@ import { TruckProvider } from '../../providers/truck/truck';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  marker :any;
    newTap;
    taps=[];
    trucks=[];
@@ -22,11 +23,15 @@ export class HomePage {
    isTap=true;
    isTruck=false;
    isload=false;
+   isChecked=false;;
    tl:Observable<any>
    arrData=[];
    listTaps = [];
    listTrucks = [];
    map: any;
+   key='';
+   lat:string;
+   lng:string;
    tapLatitude=[];
    taplongitude=[];
    truckLatitude=[];
@@ -41,8 +46,7 @@ export class HomePage {
      this.loadmap();
      this.uploadTaps();
      this.uploadtrucks();
-    
-    
+  
   }
 
 
@@ -159,16 +163,32 @@ export class HomePage {
       this.tapLatitude.push(this.listTaps[i].latitude);
       this.taplongitude.push(this.listTaps[i].longitude);
       // console.log("lat",this.tapLatitude)
-       }
-       console.log('Geofence addedsss',this.tapLatitude[i]);
-    for(var i=0;i<this.tapLatitude.length;i++){
-      console.log('Geofence addedsss',this.tapLatitude[i]);
-      let markerGroup = leaflet.featureGroup();
-      let marker: any = leaflet.marker([this.tapLatitude[i],this.taplongitude[i]],{icon:redMarker}).bindPopup("Tap ID:"+this.listTaps[i].id+" Time:"+this.listTaps[i].time);
-      markerGroup.addLayer(marker);
-      this.map.addLayer(markerGroup);
     }
     
+    for(var i=0;i<this.listTaps.length;i++){
+  
+      let markerGroup = leaflet.featureGroup();
+      this.marker = leaflet.marker([this.tapLatitude[i],this.taplongitude[i]],{icon:redMarker}).on('click',(event)=>{
+        this.lat=event.latlng.lat;
+        this.lng=event.latlng.lng;
+        let addModal = this.modalCtrl.create(UpdatePage,{lat:this.lat,lng:this.lng});
+            addModal.onDidDismiss(() => {
+             
+             });
+        addModal.present();
+      })
+      markerGroup.addLayer( this.marker);
+      this.map.addLayer(markerGroup);
+    }
+   
+    
+  }
+  onClick(){
+    let addModal = this.modalCtrl.create(UpdatePage);
+    addModal.onDidDismiss(() => {
+
+    });
+    addModal.present();
   }
   loads(){
     let addModal = this.modalCtrl.create(UpdatePage);
