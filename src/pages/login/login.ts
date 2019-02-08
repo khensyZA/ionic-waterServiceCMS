@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { RegisterPage } from '../register/register';
+import { SignupPage } from '../signup/signup';
 
 /**
  * Generated class for the LoginPage page.
@@ -33,6 +33,6 @@ export class LoginPage {
      this.islogin=true;
   }
   singup(){
-    this.navCtrl.setRoot(RegisterPage);
+    this.navCtrl.setRoot(SignupPage);
   }
 }
