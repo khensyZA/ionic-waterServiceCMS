@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { MapPage } from '../pages/map/map';
+<<<<<<< HEAD
 
 import firebase, { User } from 'firebase/app';
 import 'firebase/database';
@@ -16,6 +17,9 @@ import { ThrowStmt } from '@angular/compiler';
 
 
 
+=======
+import { LoginPage } from '../pages/login/login';
+>>>>>>> 8d538f5b3cbc1f303f990a40d2e4f8282d7b63e9
 @Component({
   templateUrl: 'app.html'
 })

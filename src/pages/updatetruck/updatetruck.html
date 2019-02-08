@@ -6,58 +6,74 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title text-center>Update</ion-title>
+  <ion-navbar color="dark">
+    <ion-title text-center>TRUCKS</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4 text-center>
-          <span text-center>Accessible time</span>
-          <ion-item>
-            <ion-label text-wrap>arrival time</ion-label>
-              <ion-select [(ngModel)]="starttime">
-                <ion-option *ngFor="let start of startTime">{{start}}</ion-option>
-              </ion-select>
+
+<div class="container">
+   
+          <h3>Accessible time</h3>
+          <ion-list text-center  class="outline">
+          <ion-item no-lines text-center class="item1">
+           </ion-item>
+
+          <ion-item class="op">
+          <ion-label text-wrap>arrival time</ion-label>  
+
+          <ion-select [(ngModel)]="starttime">
+          <ion-option text-wrap *ngFor="let start of startTime">{{start}}</ion-option>
+          </ion-select>
+          </ion-item>
+<br>
+          <ion-item class="op">
+          <ion-label text-wrap>departure time</ion-label>
+          <ion-select [(ngModel)]="endtime">
+          <ion-option text-wrap *ngFor="let start of endTime">{{start}}</ion-option>
+          </ion-select>
+          </ion-item>
+        </ion-list>
+<br>
+     
+          <h3 >Liters</h3>
+          <ion-item class="op">
+          <ion-input  type="text" [(ngModel)]="liters" placeholder="E.g 375 liters of water each week " class="outline"></ion-input>
+         </ion-item>
+   
+          <h3>Service</h3>
+          <ion-list radio-group [(ngModel)]="reliable" class="outline">
+            
+            <ion-item class="op">
+            <ion-label>Good</ion-label>
+            <ion-radio value="good"></ion-radio>
             </ion-item>
-            <ion-item>
-              <ion-label text-wrap>departure time</ion-label>
-              <ion-select [(ngModel)]="endtime">
-                <ion-option *ngFor="let start of endTime">{{start}}</ion-option>
-              </ion-select>
-            </ion-item>
-        </ion-col>
-        <ion-col col-2 text-center>
-          <span text-center>Liters</span>
-            <ion-input type="text" [(ngModel)]="liters" placeholder="E.g 375 liters of water each week " class="outline"></ion-input>
-        </ion-col>
-        <ion-col col-3 text-center>
-          <span text-center>Service</span>
-            <ion-list radio-group [(ngModel)]="reliable" class="outline">
-              <ion-item class="item1">
-                <ion-label>Good</ion-label>
-                <ion-radio value="good"></ion-radio>
-              </ion-item>
-              <ion-item class="item1">
-                <ion-label>Poor</ion-label>
-                <ion-radio value="poor"></ion-radio>
-              </ion-item>
-           </ion-list>
-        </ion-col>
-        <ion-col col-3 text-center>
-          <span>days</span>
-          <ion-item>
-            <ion-label text-wrap>days</ion-label>
+<br>
+
+          <ion-item class="op">
+          <ion-label>Poor</ion-label>
+          <ion-radio value="poor"></ion-radio>
+          </ion-item>
+
+          </ion-list>
+
+   <br>       
+      
+     
+          <h3> Number of days</h3>
+          <ion-item class="op">
+            <ion-label text-wrap >day(s)</ion-label>
             <ion-select [(ngModel)]="days">
-                <ion-option *ngFor="let start of arrdays">{{start}}</ion-option>
+            <ion-option *ngFor="let start of arrdays">{{start}}</ion-option>
             </ion-select>
           </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <button ion-button full outline (click)="updateTruck()">save</button>
+
+      <br> 
+    </div>
+
+    <button ion-button full block color="dark" (click)="updateTruck()">save</button>
+
 </ion-content>

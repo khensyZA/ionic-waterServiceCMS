@@ -1,5 +1,6 @@
 page-home {
 
+<<<<<<< HEAD
     .content{
 
         background-color: #edf9fc;
@@ -7,18 +8,56 @@ page-home {
     #map{
         width: 100%;
         height:100%;
+=======
+    .main{
+        background-color:#edf9fc;
+        h2{
+            background-color:#005792;
+            padding:10px;
+            color: white;
+            border-radius: 10px;
+        }
+    }
+    #map{
+        width: 100%;
+        height: 100%;
+
+        // margin-left:60px;
+        // margin-top:40px;
+        border: solid 2px grey;
+    //   border-bottom-style: none;
+        // border-right-style: none;
+         border-right: solid 2px grey;
+>>>>>>> 8d538f5b3cbc1f303f990a40d2e4f8282d7b63e9
     }
  .header .col {
     background-color: #005792;
+ 
  }
-
+.chead{
+    color: white;
+}
   .col {
+<<<<<<< HEAD
       
        
         border: solid 0px grey;
         border-bottom-style: none;
         border-right-style: none;
         border-right: solid 0px grey;
+=======
+       border-radius: 2px;
+       border: solid 1px #005792;
+       border-bottom-style: none;
+       border-right-style: none;
+    //    border-top-style: none;
+       border-left-style: solid 2px grey;
+       border-right: solid 1px grey;
+    //    float: left; 
+       position: relative;
+    //    left: 60px;
+       
+>>>>>>> 8d538f5b3cbc1f303f990a40d2e4f8282d7b63e9
   }
 
 //   .col:last-child {
