@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, Alert, AlertController, LoadingCon
 import { HomePage } from '../home/home';
 import { ResetPage } from '../reset/reset';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SignupPage } from '../signup/signup';
 
 /**
  * Generated class for the LoginPage page.
@@ -88,12 +89,12 @@ export class LoginPage {
   login(){
      this.islogin=true;
   }
-  // singup(){
-  //   this.navCtrl.setRoot();
-  // }
 
   reset(){
     this.navCtrl.setRoot(ResetPage);
+  }
 
+  singup(){
+    this.navCtrl.setRoot(SignupPage);
   }
 }

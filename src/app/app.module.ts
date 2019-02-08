@@ -18,8 +18,7 @@ import { Geofence } from '@ionic-native/geofence/ngx';
 import { LoginPage } from '../pages/login/login';
 import { AuthProvider } from '../providers/auth/auth';
 import { ProfileProvider } from '../providers/profile/profile';
-
-
+import { SignupPage } from '../pages/signup/signup';
 
  var config = {
     apiKey: "AIzaSyCDA2SmyMOpqB49eOYtL566O6_QZOQL9zQ",
@@ -37,6 +36,7 @@ import { ProfileProvider } from '../providers/profile/profile';
     UpdatePage,
     LoginPage,
     MapPage,
+    SignupPage,
     UpdatetruckPage,
     HomePage,
     ResetPage
@@ -50,6 +50,7 @@ import { ProfileProvider } from '../providers/profile/profile';
   entryComponents: [
     MyApp,
     UpdatePage,
+    SignupPage,
     LoginPage,
     MapPage,
     UpdatetruckPage,

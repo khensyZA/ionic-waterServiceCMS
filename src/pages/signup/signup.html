@@ -1,0 +1,113 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>signup</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="content">
+
+  <div class="container">
+        <h2 align="center">Create Account</h2>   
+   <form [formGroup]="userForm" class="form-holder" (ngSubmit)="signUp()" novalidate>
+ 
+       <ion-item  class="items" [ngClass]="{'error-border':!userForm.get('firstName').valid && userForm.get('firstName').touched}">
+           <ion-label floating> Firstname</ion-label>
+           <ion-input formControlName="firstName" type="text">
+           </ion-input>
+       </ion-item>
+ 
+       <div padding *ngIf="userForm.get('firstName').hasError('required') && userForm.get('firstName').touched" class="invalid">
+           <p ion-text color="danger">First Name field is required!</p>
+       </div>
+       <div padding *ngIf="userForm.get('firstName').hasError('minlength') && userForm.get('firstName').touched" class="invalid">
+           <p ion-text color="danger">Enter a valid First Name with 3 or more characters!</p>
+       </div>
+       <div padding *ngIf="userForm.get('firstName').hasError('pattern') && userForm.get('firstName').touched" class="invalid">
+           <p ion-text color="danger">First Name can only take letters!</p>
+       </div>
+ 
+ 
+       <ion-item  class="items" [ngClass]="{'error-border':!userForm.get('lastName').valid && userForm.get('lastName').touched}">
+           <ion-label floating>Lastname </ion-label>
+           <ion-input formControlName="lastName" type="text">
+           </ion-input>
+       </ion-item>
+ 
+       <div padding *ngIf="userForm.get('lastName').hasError('required') && userForm.get('lastName').touched" class="invalid">
+           <p ion-text color="danger">Last Name field is required!</p>
+       </div>
+       <div padding *ngIf="userForm.get('lastName').hasError('minlength') && userForm.get('lastName').touched" class="invalid">
+           <p ion-text color="danger">Enter a valid Last Name with 3 or more characters!</p>
+       </div>
+       <div padding *ngIf="userForm.get('lastName').hasError('pattern') && userForm.get('lastName').touched" class="invalid">
+           <p ion-text color="danger">Last Name can only take letters!</p>
+       </div>
+ 
+ 
+       <ion-item class="items" [ngClass]="{'error-border':!userForm.get('email').valid && userForm.get('email').touched}">
+           <ion-label floating>Email</ion-label>
+           <ion-input formControlName="email" type="email"> </ion-input>
+       </ion-item>
+ 
+       <div padding *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched" class="invalid">
+           <p ion-text color="danger">Email field is required!</p>
+       </div>
+       <div padding *ngIf="userForm.get('email').hasError('pattern') && userForm.get('email').touched" class="invalid">
+           <p ion-text color="danger">* Enter valid Email!</p>
+       </div>
+ 
+ 
+ 
+       <ion-item class="items" [ngClass]="{'error-border':!userForm.get('password').valid && userForm.get('password').touched}">
+           <ion-label floating>Password</ion-label>
+           <ion-input formControlName="password" type="password">
+           </ion-input>
+       </ion-item>
+ 
+       <div padding *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched" class="invalid">
+           <p ion-text color="danger">Password is required!</p>
+       </div>
+ 
+       <div padding *ngIf="userForm.get('password').hasError('minlength') && userForm.get('password').touched" class="invalid">
+           <p ion-text color="danger"> Password minimum length is 6!</p>
+       </div>
+ 
+       <ion-item class="items" [ngClass]="{'error-border':!userForm.get('confirm').valid && userForm.get('confirm').touched}">
+           <ion-label floating>Confirm Password </ion-label>
+           <ion-input formControlName="confirm" type="password">
+           </ion-input>
+       </ion-item>
+ 
+       <div padding *ngIf="userForm.get('confirm').hasError('minlength') && userForm.get('confirm').touched" class="invalid">
+           <p ion-text color="danger">Confirm password minimum length is 6!</p>
+       </div>
+ 
+       <div padding *ngIf="userForm.get('confirm').hasError('required') && userForm.get('confirm').touched" class="invalid">
+           <p ion-text color="danger">* Confirm password is required</p>
+       </div>
+ 
+       <div padding *ngIf="userForm.get('confirm').hasError('equalTo') && userForm.get('confirm').touched" class="invalid">
+           <p ion-text color="danger">Password does not match</p>
+       </div>
+       <br/>
+ 
+       <div padding text-center>
+           <button ion-button block full round id="button" (click)="gotosignup()" color="primary" [disabled]="!userForm.valid">Register</button>
+       </div>
+       <div  style="text-align:center" padding>
+         <p style="color:#4d606e" class="p">Or, <a style="color:#66bfbf"(click)="gotosignin()">Log in</a></p>
+     </div>
+   </form>
+ 
+ </div>
+
+</ion-content>
