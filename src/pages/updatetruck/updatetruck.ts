@@ -16,6 +16,7 @@ import { TruckProvider } from '../../providers/truck/truck';
   templateUrl: 'updatetruck.html',
 })
 export class UpdatetruckPage {
+
    key:any;
    keys=[];
    data=[];
@@ -33,45 +34,61 @@ export class UpdatetruckPage {
    startTime=["06:00","07:00","08:00","09:00","10:00","11:00","12:00"];
    endTime=["13:00","14:00","15:00","16:00","17:00","18:00","19:00"];
    arrdays=['1','2','3','4','5','6','7'];
-  constructor(public navCtrl: NavController, private truckprovider:TruckProvider,public navParams: NavParams) {
-    this.key=this.navParams.get('key');
+   lat:string;
+   lng:string;
+   location:string;
+   isChecked=true;
+   isUpdate=false;
+
+  constructor(public navCtrl: NavController,private truck:TruckProvider, private truckprovider:TruckProvider,public navParams: NavParams) {
+    this.lat=this.navParams.get('lat');
+    this.lng=this.navParams.get('lng');
+    this.location=this.lat+" - "+this.lng;
+    console.log('location',this.location);
+    console.log('checked',this.isChecked);
     this.reftruck=firebase.database().ref('waterService/trucks/answers/');
 
     this.reftruck.on('value', resp => {
       this.listTrucks = snapshotToArray(resp);
-      for(var i=0;i<this.listTrucks.length;i++){
-        this.keys.push(this.listTrucks[i].key)
-        if(this.key===this.keys[i]){
-            this.reliable=this.listTrucks[i].reliable;
-            this.days=this.listTrucks[i].days;
-            this.liters=this.listTrucks[i].liters
-            this.starttime=this.listTrucks[i].optime;
-            this.endtime=this.listTrucks[i].clotime;
-            console.log('data',this.startTime)
-        }
-      }
       console.log('hey',this.listTrucks);
     });
     this.truckprovider.getalltrucks().then((res: any) => {
-      this.trucks=res;
      
     });
   }
   ionViewDidLoad() {
+    this.uploadtrucks();
+  }
+  updateTp(key){
+    this.isUpdate=true;
+    this.isChecked=false;
+    this.key=key;
+    this.reliable=this.trucks[0].reliable;
+    this.time=this.trucks[0].time;
+    this.days=this.trucks[0].days
+    this.starttime=this.trucks[0].optime;
+    this.endtime=this.trucks[0].clotime;
     
   }
-  lastFive:string;
-
+  deleteTruk(key){
+    firebase.database().ref('waterService/trucks/answers/'+key).remove();
+  }
   updateTruck(){
     this.updateFire=firebase.database().ref('waterService/trucks/answers/'+this.key);
     this.time=this.starttime+' - '+this.endtime;
-    this.lastFive=this.key.substr(this.key.length -5);
-    console.log('trcuk', this.lastFive);
-    this.updatetk(this.lastFive);
     this.navCtrl.pop();
   }
   updatetk(id:string):Promise<any>{
      return this.updateFire.update({id})
+  }
+  uploadtrucks(){
+    this.reftruck.on('value', resp => {
+      this.listTrucks = snapshotToArray(resp);
+ 
+    });
+    this.truck.getalltrucks().then((res: any) => {
+      this.trucks=res;
+    });
   }
 
 }

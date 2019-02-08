@@ -1,5 +1,9 @@
 page-home {
 
+       .scroll-content {
+        overflow: hidden !important;
+    }
+
     .main{
         background-color:#edf9fc;
         h2{

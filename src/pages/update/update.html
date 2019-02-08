@@ -8,21 +8,41 @@
 
   <ion-navbar color="dark">
     <ion-title  text-center>TAPS</ion-title>
+    <ion-buttons outline end> 
+        <button color="primary" ion-button (click)="click()">
+            <ion-icon name="close" color="light"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
+  
 
 </ion-header>
 
 
-<ion-content padding>
-    <div *ngIf="isChecked" text-center class="outline">           
+<ion-content padding class="content">
+    <div *ngIf="isChecked" text-center class="outline"  style="text-align:center"> 
+        
         <ion-list *ngFor="let tap of taps" class="row header" text-center>
-          <ion-item><span>Tap ID: </span>{{tap.id}}</ion-item>
-          <ion-item><span>Time: </span>{{tap.time}}</ion-item>
-          <ion-item><span>Safe: </span>{{tap.safety}}</ion-item>
-          <ion-item><span>Reliable: </span>{{tap.reliable}}</ion-item>
-          <button ion-button outline item-end icon-start color="dark" (click)="updateTp(tap.key)">Update<ion-icon name="create"></ion-icon></button>
-          <button ion-button outline item-end icon-start color="danger" (click)="deleteTap(tap.key)">Delete<ion-icon name="trash" color="danger"></ion-icon></button>
+          
+          <ion-item ><span>Tap ID: </span>{{tap.id}}</ion-item><br><br>
+          <ion-item ><span>Time: </span>{{tap.time}}</ion-item><br><br>
+          <ion-item ><span>Safe: </span>{{tap.safety}}</ion-item><br><br>
+          <ion-item><span>Reliable: </span>{{tap.reliable}}</ion-item><br><br>
+       
+          <br><br><br><br>
+
+          <!-- <button ion-button item-end icon-start color="dark" (click)="updateTp(tap.key)">Update</button>
+          <button ion-button item-end icon-start color="dark" (click)="deleteTap(tap.key)">Delete</button> -->
+
+          <ion-footer class="footer">
+              <div padding style="text-align:center">
+               <button ion-button clear  class="outline" (click)="updateTp(tap.key)">Update</button> 
+                  <button ion-button clear  class="outline"  (click)="deleteTaps(tap.key)">Delete</button>        
+          </div>
+          </ion-footer>
+         
         </ion-list>
+    
     </div>
     
     <div *ngIf="isUpdate">
@@ -81,7 +101,16 @@
                </ion-list>
                 
             <br>
-        
-          <button ion-button full block  color="dark" (click)="updateTap()">update</button>
+
+
+            
+              
+                 <button ion-button full color="dark"  (click)="updateTap()">SAVE</button> 
+                       
+          
+             
+          
+         
     </div>
+ 
 </ion-content>

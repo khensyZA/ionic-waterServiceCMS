@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import firebase, { User } from 'firebase/app';
 import 'firebase/database';
 import { TapProvider } from '../../providers/tap/tap';
@@ -35,7 +35,7 @@ export class UpdatePage {
    updateFire:firebase.database.Reference;
    startTime=["06:00","07:00","08:00","09:00","10:00","11:00","12:00"];
    endTime=["13:00","14:00","15:00","16:00","17:00","18:00","19:00"];
-  constructor(public navCtrl: NavController,private tap:TapProvider, private tapProvider:TapProvider,public navParams: NavParams) {
+  constructor(   private alertCTR: AlertController,public navCtrl: NavController,private tap:TapProvider, private tapProvider:TapProvider,public navParams: NavParams) {
    
     this.reftap = firebase.database().ref('waterService/taps/answers/');
     this.lat=this.navParams.get('lat');
@@ -46,18 +46,6 @@ export class UpdatePage {
 
     this.reftap.on('value', resp => {
       this.listTaps = snapshotToArray(resp);
-      // for(var i=0;i<this.listTaps.length;i++){
-      //   this.keys.push(this.listTaps[i].key)
-      //   if(this.key===this.keys[i]){
-      //       this.reliable=this.listTaps[i].reliable;
-      //       this.time=this.listTaps[i].time;
-      //       this.safety=this.listTaps[i].safety
-      //       this.starttime=this.listTaps[i].optime;
-      //       this.endtime=this.listTaps[i].clotime;
-      //       console.log('data',this.startTime)
-      //   }
-      // }
-    
     });
     this.tapProvider.getalltaps().then((res: any) => {
       console.log()
@@ -68,7 +56,24 @@ export class UpdatePage {
     this.uploadTaps();
   }
   deleteTaps(key){
-    firebase.database().ref('waterService/taps/answers/'+key).remove();
+   
+    const alert = this.alertCTR.create({
+      subTitle:"Are you sure you want to delete this record?",
+      buttons: [{
+        text:'No',
+        handler:data=>{
+          this.navCtrl.pop();
+          }
+      },{
+        text:'Yes',
+        handler:data=>{
+          firebase.database().ref('waterService/taps/answers/'+key).remove();
+          this.navCtrl.pop();
+          }
+        }]
+    })
+     alert.present();
+    
   }
  
   updateTp(key){
@@ -81,6 +86,9 @@ export class UpdatePage {
     this.starttime=this.taps[0].optime;
     this.endtime=this.taps[0].clotime;
     
+  }
+  click(){
+    this.navCtrl.pop();
   }
   updateTap(){
     console.log('data',this.key);
