@@ -1,3 +1,4 @@
+import { ResetPage } from './../pages/reset/reset';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -15,7 +16,10 @@ import { MapPage } from '../pages/map/map';
 import { MarkersProvider } from '../providers/markers/markers';
 import { Geofence } from '@ionic-native/geofence/ngx';
 import { LoginPage } from '../pages/login/login';
-import { RegisterPage } from '../pages/register/register';
+import { AuthProvider } from '../providers/auth/auth';
+import { ProfileProvider } from '../providers/profile/profile';
+
+
 
  var config = {
     apiKey: "AIzaSyCDA2SmyMOpqB49eOYtL566O6_QZOQL9zQ",
@@ -33,9 +37,9 @@ import { RegisterPage } from '../pages/register/register';
     UpdatePage,
     LoginPage,
     MapPage,
-    RegisterPage,
     UpdatetruckPage,
-    HomePage
+    HomePage,
+    ResetPage
     
   ],
   imports: [
@@ -46,11 +50,11 @@ import { RegisterPage } from '../pages/register/register';
   entryComponents: [
     MyApp,
     UpdatePage,
-    RegisterPage,
     LoginPage,
     MapPage,
     UpdatetruckPage,
-    HomePage
+    HomePage,
+    ResetPage
     
   ],
   providers: [
@@ -63,7 +67,9 @@ import { RegisterPage } from '../pages/register/register';
     MarkersProvider,
   
     Geofence,
-    MarkersProvider
+    MarkersProvider,
+    AuthProvider,
+    ProfileProvider
 
   ]
 })

@@ -9,6 +9,7 @@ import { UpdatetruckPage } from '../updatetruck/updatetruck';
 import leaflet from 'leaflet';
 import { Geofence } from '@ionic-native/geofence/ngx';
 import { TruckProvider } from '../../providers/truck/truck';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -44,9 +45,16 @@ export class HomePage {
   }
 
 
-  login(){
 
+  
+  // login(){ 
+  //   this.navCtrl.setRoot(LoginPage)
+  // }
+ 
+  logout(){
+    this.navCtrl.setRoot(LoginPage)
   }
+
   uploadTaps(){
     this.reftap.on('value', resp => {
       this.listTaps = snapshotToArray(resp);
@@ -207,13 +215,6 @@ export class HomePage {
     }
     
   }
-
-// logout(){
-//   this.navCtrl.push
-// }
-// login(){
-//   t
-// }
 
 
 }

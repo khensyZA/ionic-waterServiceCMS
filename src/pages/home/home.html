@@ -5,10 +5,10 @@
     </ion-title>
     <ion-buttons outline start> 
      
-      <button color="pin" ion-button outline (click)="login">
+      <!-- <button color="pin" ion-button outline (click)="login()">
         Sign in
-      </button>
-      <button color="pin" ion-button outline (click)="logout"><ion-icon name="log-out"></ion-icon>
+      </button> -->
+      <button color="pin" ion-button outline (click)="logout()"><ion-icon name="log-out"></ion-icon>
       </button>
      
       </ion-buttons>
@@ -29,6 +29,7 @@
 <ion-content padding class="main" >
 <div id="map"></div>
 
+<div class="wrapper">
 
   <div  *ngIf="isTap">
 
@@ -89,6 +90,6 @@
      
   </div> 
 
-  
+</div>
 
 </ion-content>
