@@ -15,6 +15,7 @@ import { MapPage } from '../pages/map/map';
 import { MarkersProvider } from '../providers/markers/markers';
 import { Geofence } from '@ionic-native/geofence/ngx';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
 
  var config = {
     apiKey: "AIzaSyCDA2SmyMOpqB49eOYtL566O6_QZOQL9zQ",
@@ -32,7 +33,7 @@ import { LoginPage } from '../pages/login/login';
     UpdatePage,
     LoginPage,
     MapPage,
-
+    SignupPage,
     UpdatetruckPage,
     HomePage
     
@@ -45,7 +46,7 @@ import { LoginPage } from '../pages/login/login';
   entryComponents: [
     MyApp,
     UpdatePage,
-   
+    SignupPage,
     LoginPage,
     MapPage,
     UpdatetruckPage,
