@@ -15,7 +15,7 @@ import { TapProvider } from '../providers/tap/tap';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
   listTaps = [];
    listTrucks = [];
    trucks=[];
