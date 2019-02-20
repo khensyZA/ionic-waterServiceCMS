@@ -1,8 +1,8 @@
 page-home {
 
-   //     .scroll-content {
-   //      overflow: hidden !important;
-   //  }
+       .scroll-content {
+        overflow: hidden !important;
+    }
 
     .main{
 
@@ -33,7 +33,6 @@ page-home {
         // border-right-style: none;
          border-right: solid 2px grey;
     }
-<<<<<<< HEAD
 
     .wrapper{
         background:rgba(70, 70, 70, 0.6);
@@ -59,14 +58,12 @@ page-home {
     }
     
 
-=======
     .piechart{
       background-color:limegreen;
       width: 50%;
       border-radius: 50%;
       height: 50%;
     }
->>>>>>> 1b6c38791d87ce2f47874e810543812882174865
  .header .col {
     background-color: #005792;
     color: white;
@@ -154,10 +151,16 @@ page-home {
    box-sizing: border-box;
    border: 1px solid black;
    margin: 2vh auto;
+   h2{
+    background-color:#005792;
+    padding:10px;
+    color: white;
+    border-radius: 10px;
+}
  }
  
  ul {
-   height: 90%;
+   height: 70%;
    width: 100%;
    padding: 0;
    background:lightskyblue;
@@ -174,6 +177,15 @@ page-home {
    overflow-y: scroll;
    overflow-x: hidden;
    border: 1px solid black;
+ }
+ .coll{
+    
+ }
+ .heade{
+    background-color:#005792;
+    height: 20%;
+    color: white;
+    border-radius: 10px;
  }
  .container {
    // width: 500px;

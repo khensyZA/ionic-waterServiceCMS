@@ -9,7 +9,6 @@ import { UpdatetruckPage } from '../updatetruck/updatetruck';
 import leaflet from 'leaflet';
 import { Geofence } from '@ionic-native/geofence/ngx';
 import { TruckProvider } from '../../providers/truck/truck';
-import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -24,7 +23,9 @@ export class HomePage {
    isTap=true;
    isTruck=false;
    isload=false;
-   isChecked=false;;
+   name="Taps";
+   isChecked=false;
+   isSearchbarOpened=false;
    tl:Observable<any>
    arrData=[];
    listTaps = [];
@@ -37,6 +38,9 @@ export class HomePage {
    taplongitude=[];
    truckLatitude=[];
    trucklongitude=[];
+   filteredtaps=[];
+   filteredtrucks=[];
+   temparr=[];
    reftap = firebase.database().ref('waterService/taps/answers/');
    reftruck=firebase.database().ref('waterService/trucks/answers/');
 
@@ -46,7 +50,7 @@ export class HomePage {
     scaleShowVerticalLines: false,
     responsive: true
   };
-
+ 
   //Chart Labels
   public barChartLabels:string[] = ['tap:01 truck 01', 'tap:02 truck 02', 'tap:03 truck 03', 'tap:04 truck 04', 'tap:06 truck 06']
   public barChartType:string = 'bar';
@@ -76,19 +80,13 @@ export class HomePage {
   }
 
 
+  login(){
 
-  
-  // login(){ 
-  //   this.navCtrl.setRoot(LoginPage)
-  // }
- 
-  logout(){
-    this.navCtrl.setRoot(LoginPage)
   }
-
   uploadTaps(){
     this.reftap.on('value', resp => {
       this.listTaps = snapshotToArray(resp);
+      this.filteredtaps= this.listTaps;
     });
     this.tap.getalltaps().then((res: any) => {
       console.log()
@@ -109,6 +107,7 @@ export class HomePage {
   }
 
   deleteTaps(key){
+    
     firebase.database().ref('waterService/taps/answers/'+key).remove();
   }
   deleteTruk(key){
@@ -132,10 +131,12 @@ export class HomePage {
   changeTap(){
     this.isTap=true;
     this.isTruck=false;
+    this.name="Taps"
   }
   changeTruck(){
     this.isTruck=true;
     this.isTap=false;
+    this.name="Trucks"
   }
  
   loadmap() {
@@ -227,7 +228,7 @@ export class HomePage {
     let addModal = this.modalCtrl.create(UpdatePage);
     addModal.onDidDismiss(() => {
      
-    });4
+    });
     if(this.isload){
       addModal.present();
     }
@@ -266,7 +267,20 @@ export class HomePage {
     }
     
   }
-
+  searchDJ(searchbar) {
+    this.filteredtaps = this.temparr;
+    var q = searchbar.target.value;
+    if (q.trim() == '') {
+      return;
+    }
+ 
+    this.filteredtaps = this.filteredtaps.filter((v) => {
+      if ((v.stageName.toLowerCase().indexOf(q.toLowerCase()) > -1)||(v.id.toLowerCase().indexOf(q.toLowerCase()) > -1)) {
+        return true;
+      }
+      return false;
+    })
+  }
 }
 export const snapshotToArray = snapshot => {
   let returnArr = [];
