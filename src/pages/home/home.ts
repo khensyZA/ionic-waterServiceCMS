@@ -42,6 +42,31 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,private geofence: Geofence,private truck:TruckProvider, public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
   }
+  public barChartOptions:any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+
+  //Chart Labels
+  public barChartLabels:string[] = ['2011', '2012', '2013', '2014', '2015', '2016', '2017'];
+  public barChartType:string = 'bar';
+  public barChartLegend:boolean = true;
+ 
+  //Chart data
+  public barChartData:any[] = [
+    {data: [66, 55, 83, 82, 56, 51, 43], label: 'Taps'},
+    {data: [29, 38, 40, 21, 82, 30, 89], label: 'Trucks'}
+  ];
+ 
+  // Chart events
+  public chartClicked(e:any):void {
+    console.log(e);
+  }
+
+  // Chart events
+  public chartHovered(e:any):void {
+    console.log(e);
+  }
   ionViewDidEnter() {
   
      this.loadmap();
@@ -117,11 +142,11 @@ export class HomePage {
     this.map = leaflet.map("map").fitWorld();
     leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attributions: 'www.tphangout.com',
-      maxZoom: 19
+      maxZoom: 13
     }).addTo(this.map);
     this.map.locate({
       setView: true,
-      maxZoom: 18
+      maxZoom: 13
     })
   //Geofencing
     .on('locationfound', (e) => {
@@ -147,7 +172,7 @@ export class HomePage {
 
   addTapmakers(){
 
-    const myCustomColour = 'limegreen'
+    const myCustomColour = 'dodgerblue'
     const markerHtmlStyles = `
     background-color: ${myCustomColour};
     width: 3rem;

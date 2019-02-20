@@ -78,9 +78,52 @@
 
             <div id="map"></div>
 
+            
+              <div text-center class="containers">
+                  <ion-row>
+                    <ion-col col-8>
+                        <ul class="items-holder">
+                            <li class="item">
+                               <div text-center>
+                                  <ion-row class="row header" text-center>       
+                                    <ion-col col-2>ID</ion-col>
+                                    <ion-col col-2>Time</ion-col>
+                                    <ion-col col-2>Reliable</ion-col>
+                                    <ion-col col-2>safety</ion-col>
+                                    <ion-col col-4>Action</ion-col>
+                                  </ion-row>
+                                  <ion-row class="info" *ngFor="let tap of listTaps;let i=index" text-center>
+                                    <ion-col col-2>{{tap.id}}</ion-col>
+                                    <ion-col col-2>{{tap.time}}</ion-col>
+                                    <ion-col col-2>{{tap.reliable}}</ion-col>
+                                    <ion-col col-2>{{tap.safety}}</ion-col>
+                                    <ion-col col-2><button ion-button outline color="dark" (click)="updateTap(tap.key)" >update</button></ion-col>
+                                    <ion-col col-2><button ion-button outline color="danger" (click)="deleteTaps(tap.key)">delete</button></ion-col>
+                                  </ion-row>
+                                 </div>
+                            </li>
+                          </ul>
+                    </ion-col>
+                    <ion-col col-4>
+                        <h2>WaterServe Charts</h2>
+                        <div>
+                            <div class="charts" style="display: block">
+                              <canvas baseChart height="15" width="50"
+                                      [datasets]="barChartData"
+                                      [labels]="barChartLabels"
+                                      [options]="barChartOptions"
+                                      [legend]="barChartLegend"
+                                      [chartType]="barChartType"
+                                      (chartHover)="chartHovered($event)"
+                                      (chartClick)="chartClicked($event)"></canvas>
+                            </div>
+                          </div>  
+                    </ion-col>
+                  </ion-row>
+            </div>
         
 
-  <div *ngIf="isTruck">
+  <!-- <div *ngIf="isTruck">
       <h2 text-center>TRUCK RECORDS</h2>
           <ion-row class="row header" text-center>
               <ion-col col-1>ID</ion-col>
@@ -100,7 +143,7 @@
             <ion-col col-2><button ion-button outline item-end icon-start color="danger" (click)="deleteTruk(truck.key)"><ion-icon name="trash" color="danger"></ion-icon>Delete</button></ion-col>
           </ion-row>
      
-  </div> 
+  </div>  -->
 
 
 
