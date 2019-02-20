@@ -47,14 +47,14 @@ export class HomePage {
   };
 
   //Chart Labels
-  public barChartLabels:string[] = ['2011', '2012', '2013', '2014', '2015', '2016', '2017'];
+  public barChartLabels:string[] = ['tap:01 truck 01', 'tap:02 truck 02', 'tap:03 truck 03', 'tap:04 truck 04', 'tap:06 truck 06']
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
  
   //Chart data
   public barChartData:any[] = [
-    {data: [66, 55, 83, 82, 56, 51, 43], label: 'Taps'},
-    {data: [29, 38, 40, 21, 82, 30, 89], label: 'Trucks'}
+    {data: [66, 55, 83, 82, 56, 51, 43], label: 'Trucks'},
+    {data: [29, 38, 40, 21, 82, 30, 89], label: 'Taps'}
   ];
  
   // Chart events
