@@ -16,6 +16,8 @@ import { MarkersProvider } from '../providers/markers/markers';
 import { Geofence } from '@ionic-native/geofence/ngx';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { ChartsPage } from '../pages/charts/charts';
+import { ChartsModule } from 'ng2-charts';
 
  var config = {
     apiKey: "AIzaSyCDA2SmyMOpqB49eOYtL566O6_QZOQL9zQ",
@@ -33,6 +35,7 @@ import { SignupPage } from '../pages/signup/signup';
     UpdatePage,
     LoginPage,
     MapPage,
+    ChartsPage,
     SignupPage,
     UpdatetruckPage,
     HomePage
@@ -40,13 +43,15 @@ import { SignupPage } from '../pages/signup/signup';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     UpdatePage,
     SignupPage,
+    ChartsPage,
     LoginPage,
     MapPage,
     UpdatetruckPage,

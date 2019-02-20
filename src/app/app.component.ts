@@ -10,6 +10,7 @@ import firebase, { User } from 'firebase/app';
 import 'firebase/database';
 import { TruckProvider } from '../providers/truck/truck';
 import { TapProvider } from '../providers/tap/tap';
+import { ChartsPage } from '../pages/charts/charts';
 
 @Component({
   templateUrl: 'app.html'
