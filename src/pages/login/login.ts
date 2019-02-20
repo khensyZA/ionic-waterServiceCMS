@@ -60,7 +60,7 @@ export class LoginPage {
       });
 
       loading.present();
-      this.auth.signIn(this.userForm.value.email, this.userForm.value.password)
+      this.auth.signIn(this.userForm.value.Email, this.userForm.value.Password)
       .then(authData=>{
         loading.dismiss();
         this.load.dismiss().then(()=>{

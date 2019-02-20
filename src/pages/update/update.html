@@ -20,7 +20,7 @@
 
 
 <ion-content padding class="content">
-    <div *ngIf="isChecked" text-center class="outline"  style="text-align:center"> 
+    <!-- <div *ngIf="isChecked" text-center class="outline"  style="text-align:center"> 
         
         <ion-list *ngFor="let tap of taps" class="row header" text-center>
           
@@ -31,8 +31,8 @@
        
           <br><br><br><br>
 
-          <!-- <button ion-button item-end icon-start color="dark" (click)="updateTp(tap.key)">Update</button>
-          <button ion-button item-end icon-start color="dark" (click)="deleteTap(tap.key)">Delete</button> -->
+          <button ion-button item-end icon-start color="dark" (click)="updateTp(tap.key)">Update</button>
+          <button ion-button item-end icon-start color="dark" (click)="deleteTap(tap.key)">Delete</button> 
 
           <ion-footer class="footer">
               <div padding style="text-align:center">
@@ -43,9 +43,9 @@
          
         </ion-list>
     
-    </div>
+    </div> -->
     
-    <div *ngIf="isUpdate">
+    <div>
         <ion-list class="outline">  
             <ion-item no-lines class="item1"></ion-item>
              <h3>Accessible time</h3>

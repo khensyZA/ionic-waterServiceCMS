@@ -41,10 +41,11 @@ export class HomePage {
    filteredtaps=[];
    filteredtrucks=[];
    temparr=[];
+   searchstring:string='';
    reftap = firebase.database().ref('waterService/taps/answers/');
    reftruck=firebase.database().ref('waterService/trucks/answers/');
 
-  constructor(public navCtrl: NavController,private geofence: Geofence,private truck:TruckProvider, public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
+  constructor(private alertCTR: AlertController,public navCtrl: NavController,private geofence: Geofence,private truck:TruckProvider, public alertCtrl: AlertController,public modalCtrl:ModalController, private tap:TapProvider) {
   }
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
@@ -86,7 +87,6 @@ export class HomePage {
   uploadTaps(){
     this.reftap.on('value', resp => {
       this.listTaps = snapshotToArray(resp);
-      this.filteredtaps= this.listTaps;
     });
     this.tap.getalltaps().then((res: any) => {
       console.log()
@@ -108,10 +108,34 @@ export class HomePage {
 
   deleteTaps(key){
     
-    firebase.database().ref('waterService/taps/answers/'+key).remove();
+    const alert = this.alertCTR.create({
+      subTitle:"Are you sure you want to delete this record?",
+      buttons: [{
+        text:'No',
+        role:'Cancel'
+      },{
+        text:'Yes',
+        handler:data=>{
+          firebase.database().ref('waterService/taps/answers/'+key).remove();
+          }
+        }]
+    })
+     alert.present();
   }
   deleteTruk(key){
-    firebase.database().ref('waterService/trucks/answers/'+key).remove();
+    const alert = this.alertCTR.create({
+      subTitle:"Are you sure you want to delete this record?",
+      buttons: [{
+        text:'No',
+        role:'Cancel'
+      },{
+        text:'Yes',
+        handler:data=>{
+          firebase.database().ref('waterService/trucks/answers/'+key).remove();
+          }
+        }]
+    })
+     alert.present();
   }
   updateTap(key){
     let addModal = this.modalCtrl.create(UpdatePage,{key:key});
@@ -202,15 +226,9 @@ export class HomePage {
     for(var i=0;i<this.listTaps.length;i++){
   
       let markerGroup = leaflet.featureGroup();
-      this.marker = leaflet.marker([this.tapLatitude[i],this.taplongitude[i]],{icon:redMarker}).on('click',(event)=>{
-        this.lat=event.latlng.lat;
-        this.lng=event.latlng.lng;
-        let addModal = this.modalCtrl.create(UpdatePage,{lat:this.lat,lng:this.lng});
-            addModal.onDidDismiss(() => {
-             
-             });
-        addModal.present();
-      })
+      this.marker = leaflet.marker([this.tapLatitude[i],this.taplongitude[i]],{icon:redMarker}).bindPopup(
+        "Tap ID:"+this.listTaps[i].id+" Time:"+this.listTaps[i].time+" reliable:"+this.listTaps[i].reliable
+      )
       markerGroup.addLayer( this.marker);
       this.map.addLayer(markerGroup);
     }
@@ -260,26 +278,48 @@ export class HomePage {
     for(var i=0;i<this.truckLatitude.length;i++){
    
       let markerGroup = leaflet.featureGroup();
-      let marker: any = leaflet.marker([this.truckLatitude[i],this.trucklongitude[i]],{icon:redMarker}).bindPopup("Truck:1 time:"+this.trucks[i].time+" days:"+this.trucks[i].days+"");
+      let marker: any = leaflet.marker([this.truckLatitude[i],this.trucklongitude[i]],{icon:redMarker}).bindPopup("Truck ID:"+this.trucks[i].id+" time:"+this.trucks[i].time+" days:"+this.trucks[i].days+"");
      
       markerGroup.addLayer(marker);
       this.map.addLayer(markerGroup);
     }
     
   }
-  searchDJ(searchbar) {
-    this.filteredtaps = this.temparr;
-    var q = searchbar.target.value;
-    if (q.trim() == '') {
-      return;
-    }
- 
-    this.filteredtaps = this.filteredtaps.filter((v) => {
-      if ((v.stageName.toLowerCase().indexOf(q.toLowerCase()) > -1)||(v.id.toLowerCase().indexOf(q.toLowerCase()) > -1)) {
-        return true;
+  searchTaps(searchbar) {
+    this.reftap.on('value', resp => {
+      this.filteredtaps = snapshotToArray(resp);
+      console.log('mao',this.listTaps);
+      var q = searchbar.target.value;
+      if (q.trim() == '') {
+        return;
       }
-      return false;
-    })
+      console.log('hahah',this.listTaps);
+      this.filteredtaps = this.filteredtaps.filter((v) => {
+        if(v.id.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      })
+    });
+ 
+  }
+  searchTruck(searchbar) {
+    this.reftruck.on('value', resp => {
+      this.filteredtrucks = snapshotToArray(resp);
+      console.log('mao',this.listTrucks);
+      var q = searchbar.target.value;
+      if (q.trim() == '') {
+        return;
+      }
+      console.log('hahah',this.filteredtrucks);
+      this.filteredtrucks = this.filteredtrucks.filter((v) => {
+        if(v.id.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      })
+    });
+ 
   }
 }
 export const snapshotToArray = snapshot => {

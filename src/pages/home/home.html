@@ -29,8 +29,11 @@
                   </ion-col>
                 </ion-row>
             </div>
-            <div *ngIf="isSearchbarOpened">
-              <ion-searchbar [(ngModel)]="searchstring" (input)="searchDJ($event)" *ngIf="isSearchbarOpened" palceholder="Search for a tap by ID" showCancelButton="true" (ionCancel)="isSearchbarOpened=false"></ion-searchbar>
+            <div *ngIf="isSearchbarOpened && isTap">
+                <ion-searchbar [(ngModel)]="searchstring" (input)="searchTaps($event)" *ngIf="isSearchbarOpened" palceholder="Search for a tap by ID" showCancelButton="true" (ionCancel)="isSearchbarOpened=false"></ion-searchbar>
+            </div>
+            <div *ngIf="isSearchbarOpened && isTruck">
+              <ion-searchbar [(ngModel)]="searchstring" (input)="searchTruck($event)" *ngIf="isSearchbarOpened" palceholder="Search for a tap by ID" showCancelButton="true" (ionCancel)="isSearchbarOpened=false"></ion-searchbar>
             </div>
           </div>
             <ul class="items-holder">
@@ -43,18 +46,17 @@
                                 <ion-col col-2>Time</ion-col>
                                 <ion-col col-2>Reliable</ion-col>
                                 <ion-col col-2>safety</ion-col>
-                                <!-- <ion-col col-4>Action</ion-col> -->
+                                <ion-col col-4>Action</ion-col>
                               </ion-row>
                               <ion-row class="info" *ngFor="let tap of filteredtaps;let i=index" text-center>
                                 <ion-col col-2>{{tap.id}}</ion-col>
                                 <ion-col col-2>{{tap.time}}</ion-col>
                                 <ion-col col-2>{{tap.reliable}}</ion-col>
                                 <ion-col col-2>{{tap.safety}}</ion-col>
-                                <!-- <ion-col col-2><button ion-button outline color="dark" (click)="updateTap(tap.key)" >update</button></ion-col>
-                                <ion-col col-2><button ion-button outline color="danger" (click)="deleteTaps(tap.key)">delete</button></ion-col> -->
+                                <ion-col col-2><button ion-button outline color="dark" (click)="updateTap(tap.key)" >update</button></ion-col>
+                                <ion-col col-2><button ion-button outline color="danger" (click)="deleteTaps(tap.key)">delete</button></ion-col>
                             </ion-row>
                           </div>  
-                         
                         </div>
                         <div *ngIf="!isSearchbarOpened">
                           <ion-row class="row header" text-center>       
@@ -75,23 +77,46 @@
                         </div>
                       </div>
                       <div *ngIf="isTruck" text-center>
-                        <ion-row class="row header" text-center>
-                            <ion-col col-1>ID</ion-col>
-                            <ion-col col-2>Time</ion-col>
-                            <ion-col col-2>liters</ion-col>
-                            <ion-col col-2>Reliable</ion-col>
-                            <ion-col col-1>Number of days</ion-col>
-                            <ion-col col-4>Delete</ion-col>
-                        </ion-row>
-                        <ion-row class="info" *ngFor="let truck of listTrucks;let i=index" text-center>
-                          <ion-col col-1>{{truck.id}}</ion-col>
-                          <ion-col col-2>{{truck.time}}</ion-col>
-                          <ion-col col-2>{{truck.liters}}</ion-col>
-                          <ion-col col-2>{{truck.reliable}}</ion-col>
-                          <ion-col col-1>{{truck.days}}</ion-col>
-                          <ion-col col-2><button ion-button outline item-end icon-start color="dark" (click)="updateTruck(truck.key)">Update</button></ion-col>
-                          <ion-col col-2><button ion-button outline item-end icon-start color="danger" (click)="deleteTruk(truck.key)">Delete</button></ion-col>
-                        </ion-row>
+                        <div *ngIf="!isSearchbarOpened">
+                            <ion-row class="row header" text-center>
+                                <ion-col col-1>ID</ion-col>
+                                <ion-col col-2>Time</ion-col>
+                                <ion-col col-2>liters</ion-col>
+                                <ion-col col-2>Reliable</ion-col>
+                                <ion-col col-1>Number of days</ion-col>
+                                <ion-col col-4>Delete</ion-col>
+                            </ion-row>
+                            <ion-row class="info" *ngFor="let truck of listTrucks;let i=index" text-center>
+                              <ion-col col-1>{{truck.id}}</ion-col>
+                              <ion-col col-2>{{truck.time}}</ion-col>
+                              <ion-col col-2>{{truck.liters}}</ion-col>
+                              <ion-col col-2>{{truck.reliable}}</ion-col>
+                              <ion-col col-1>{{truck.days}}</ion-col>
+                              <ion-col col-2><button ion-button outline item-end icon-start color="dark" (click)="updateTruck(truck.key)">Update</button></ion-col>
+                              <ion-col col-2><button ion-button outline item-end icon-start color="danger" (click)="deleteTruk(truck.key)">Delete</button></ion-col>
+                            </ion-row>
+                        </div>
+                        <div *ngIf="isSearchbarOpened" text-center>
+                            <div *ngIf="searchstring!==''|| searchstring==''">
+                              <ion-row class="row header" text-center>
+                                  <ion-col col-1>ID</ion-col>
+                                  <ion-col col-2>Time</ion-col>
+                                  <ion-col col-2>liters</ion-col>
+                                  <ion-col col-2>Reliable</ion-col>
+                                  <ion-col col-1>Number of days</ion-col>
+                                  <ion-col col-4>Delete</ion-col>
+                              </ion-row>
+                              <ion-row class="info" *ngFor="let truck of filteredtrucks;let i=index" text-center>
+                                <ion-col col-1>{{truck.id}}</ion-col>
+                                <ion-col col-2>{{truck.time}}</ion-col>
+                                <ion-col col-2>{{truck.liters}}</ion-col>
+                                <ion-col col-2>{{truck.reliable}}</ion-col>
+                                <ion-col col-1>{{truck.days}}</ion-col>
+                                <ion-col col-2><button ion-button outline item-end icon-start color="dark" (click)="updateTruck(truck.key)">Update</button></ion-col>
+                                <ion-col col-2><button ion-button outline item-end icon-start color="danger" (click)="deleteTruk(truck.key)">Delete</button></ion-col>
+                              </ion-row>
+                            </div>
+                          </div>
                       </div>
                 </li>
               </ul>

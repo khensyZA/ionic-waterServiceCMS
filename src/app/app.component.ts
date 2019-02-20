@@ -16,7 +16,7 @@ import { ChartsPage } from '../pages/charts/charts';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
   listTaps = [];
    listTrucks = [];
    trucks=[];
