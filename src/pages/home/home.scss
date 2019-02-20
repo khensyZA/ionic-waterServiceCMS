@@ -5,6 +5,14 @@ page-home {
    //  }
 
     .main{
+
+          
+        background: url("/assets/imgs/waterservice.jpg");
+        background-repeat: no-repeat;
+         background-size: 180%;
+         position: relative;
+        // background-color:#edf9fc;
+
         background-color:#edf9fc;
         h2{
             background-color:#005792;
@@ -12,6 +20,7 @@ page-home {
             color: white;
             border-radius: 10px;
         }
+
     }
     #map{
         width: 100%;
@@ -24,12 +33,40 @@ page-home {
         // border-right-style: none;
          border-right: solid 2px grey;
     }
+<<<<<<< HEAD
+
+    .wrapper{
+        background:rgba(70, 70, 70, 0.6);
+    
+        position: absolute;
+        top: 50%;
+        // left: 0;
+        width: 90%;
+        height: 400px;
+        margin-top: 160px;
+         margin-left: 60px;
+        // margin-right: 80px;
+        overflow: hidden;
+        
+        &.form-success{
+            .container{
+                h1{
+                    transform: translateY(85px);
+                    
+                }
+            }
+        }
+    }
+    
+
+=======
     .piechart{
       background-color:limegreen;
       width: 50%;
       border-radius: 50%;
       height: 50%;
     }
+>>>>>>> 1b6c38791d87ce2f47874e810543812882174865
  .header .col {
     background-color: #005792;
     color: white;
@@ -42,6 +79,16 @@ page-home {
     color: white;
 }
   .col {
+
+  
+       border: solid 1px black;
+       border-bottom-style: none;
+       border-right-style: none;
+    //    border-top-style: none;
+       border-left-style: solid 2px black;
+       border-right: solid 1px black;
+       float: left; 
+
        border-radius: 2px;
        border: solid 1px #005792;
        border-bottom-style: none;

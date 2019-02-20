@@ -1,9 +1,9 @@
+import { HomePage } from './../pages/home/home';
 import { Component } from '@angular/core';
 import { Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
 import { MapPage } from '../pages/map/map';
 import { LoginPage } from '../pages/login/login';
 import firebase, { User } from 'firebase/app';
@@ -16,7 +16,7 @@ import { ChartsPage } from '../pages/charts/charts';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = LoginPage;
   listTaps = [];
    listTrucks = [];
    trucks=[];

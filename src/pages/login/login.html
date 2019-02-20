@@ -1,16 +1,38 @@
 <ion-content>
 <div class="wrapper">
 	<div class="container">
-		<h1>Water Service</h1>
+		<h1 >Water Service</h1>
 		
-		<form class="form">
-			<input type="text" placeholder="Email">
-			<input type="password" placeholder="Password">
-			<button type="submit" id="login-button" (click)="dashboard()">Login</button>
-		</form>
-		<p style="color:white">Forgot password?</p>
+		<form [formGroup]="userForm" class="form" (ngSubmit)="dashboard()" novalidate>
+
+			<ion-item no-lines class="items" [ngClass]="{'error-border':!userForm.get('Email').valid && userForm.get('Email').touched}">
+			<input type="text" formControlName="Email" Form placeholder="Email">
+			</ion-item>
+
+		<p ion-text color="danger" class="items" *ngIf="userForm.get('Email').hasError('required') && userForm.get('Email').touched" class="invalid" >Email field is required!</p>
+		
+  	<p ion-text color="danger" class="items" *ngIf="userForm.get('Email').hasError('minlength') && userForm.get('Email').touched" class="invalid">Field requires 3 or more characters!</p>
+	  
+
+		<ion-item no-lines class="items" [ngClass]="{'error-border':!userForm.get('Password').valid && userForm.get('Password').touched}">
+    <input type="password" formControlName="Password" placeholder="Password">
+		</ion-item>
+
+		<p ion-text color="danger" class="items" *ngIf="userForm.get('Password').hasError('required') && userForm.get('Password').touched" class="invalid">Password field is required!</p>
+		
+		<p ion-text color="danger" class="items" *ngIf="userForm.get('Password').hasError('minLength') && userForm.get('Password').touched" class="invalid">Field require a minimum of 6 characters!</p>
+		
+		<!-- <p ion-text color="danger" class="items" *ngIf="userForm.get('Password').hasError('pattern') && userForm.get('Password').touched" class="invalid">Enter the correct password!</p> -->
+		
+<br>
+			<button type="submit" id="login-button">Login</button>
+
+			 </form>
+			 
+		<p style="color:#53cde2"  (click)="reset()">Forgot password?</p>
 		<br>
-		<p style="color:white">Don't have an account?<a style="color:lime" (click)="singup()">register</a></p>
+		<p style="color:#53cde2">Don't have an account?<a style="color:#005794" (click)="singup()"> Register</a></p>
+	
 	</div>
 
   </div>
