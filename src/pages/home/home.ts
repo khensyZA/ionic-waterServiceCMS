@@ -1,3 +1,4 @@
+import { LoginPage } from './../login/login';
 import { Component } from '@angular/core';
 import { NavController, AlertController, ModalController } from 'ionic-angular';
 import firebase, { User } from 'firebase/app';
@@ -53,7 +54,7 @@ export class HomePage {
   };
  
   //Chart Labels
-  public barChartLabels:string[] = ['tap:01 truck 01', 'tap:02 truck 02', 'tap:03 truck 03', 'tap:04 truck 04', 'tap:06 truck 06']
+  public barChartLabels:string[] = ['truck:01 tap 01', 'truck:02 tap 02', 'truck:03 tap 03', 'truck:04 tap 04', 'truck:06 tap 06']
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
  
@@ -81,8 +82,8 @@ export class HomePage {
   }
 
 
-  login(){
-
+  logout(){
+    this.navCtrl.setRoot(LoginPage)
   }
   uploadTaps(){
     this.reftap.on('value', resp => {

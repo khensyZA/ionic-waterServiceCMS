@@ -2,8 +2,8 @@
   <ion-navbar color="dark">
     <ion-buttons end>
       <button ion-button outline large   color="primary" (click)="changeTap()" >Taps</button>
-      <button ion-button outline large  color="danger" (click)=" changeTruck()">Tracks</button> 
-      <button ion-button outline large  color="secondary" (click)=" changeTruck()">Sign out</button> 
+      <button ion-button outline large  color="danger" (click)="changeTruck()">Trucks</button> 
+      <button ion-button outline large  color="light" (click)="logout()">Sign out</button> 
     </ion-buttons>
     <ion-title color="primary" text-center>
         WaterService
@@ -14,18 +14,22 @@
 <ion-content padding class="content">
   <div id="map"></div>
   <div text-center class="containers">
+
       <ion-row>
-        <ion-col col-8>
+        <ion-col col-7>
           <div class="heade">
             <div *ngIf="!isSearchbarOpened" >
               <ion-row class="coll">
-                  <ion-col col-6 class="coll">
+                  <ion-col col-11 >
                     <h2>{{name}}</h2>
                   </ion-col>
-                  <ion-col col-6 text-center>
-                      <button end ion-button icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
-                          <ion-icon name="search"></ion-icon>
-                        </button>
+
+                  <ion-col col-1 class="set" >
+                <ion-buttons end>
+              <button ion-button  color="dark" icon-only *ngIf="!isSearchbarOpened" (click)="isSearchbarOpened=true">
+              <ion-icon name="search"></ion-icon>
+                </button>
+                </ion-buttons>
                   </ion-col>
                 </ion-row>
             </div>
@@ -36,6 +40,8 @@
               <ion-searchbar [(ngModel)]="searchstring" (input)="searchTruck($event)" *ngIf="isSearchbarOpened" palceholder="Search for a tap by ID" showCancelButton="true" (ionCancel)="isSearchbarOpened=false"></ion-searchbar>
             </div>
           </div>
+
+          <br>
             <ul class="items-holder">
                 <li class="item">
                     <div  *ngIf="isTap" text-center>
@@ -48,6 +54,8 @@
                                 <ion-col col-2>safety</ion-col>
                                 <ion-col col-4>Action</ion-col>
                               </ion-row>
+
+                              
                               <ion-row class="info" *ngFor="let tap of filteredtaps;let i=index" text-center>
                                 <ion-col col-2>{{tap.id}}</ion-col>
                                 <ion-col col-2>{{tap.time}}</ion-col>
@@ -63,7 +71,7 @@
                               <ion-col col-2>ID</ion-col>
                               <ion-col col-2>Time</ion-col>
                               <ion-col col-2>Reliable</ion-col>
-                              <ion-col col-2>safety</ion-col>
+                              <ion-col col-2>Safety</ion-col>
                               <ion-col col-4>Action</ion-col>
                             </ion-row>
                             <ion-row class="info" *ngFor="let tap of listTaps;let i=index" text-center>
@@ -121,11 +129,12 @@
                 </li>
               </ul>
         </ion-col>
-        <ion-col col-4>
-            <h2>WaterServe Charts</h2>
+        <ion-col col-5>
+            <h2>WaterService Charts</h2>
             <div>
+              <br>
                 <div class="charts" style="display: block">
-                  <canvas baseChart height="15" width="50"
+                  <canvas baseChart height="20" width="50"
                           [datasets]="barChartData"
                           [labels]="barChartLabels"
                           [options]="barChartOptions"

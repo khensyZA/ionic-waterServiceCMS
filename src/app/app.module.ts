@@ -1,3 +1,4 @@
+import { Chart } from 'chart.js';
 import { ResetPage } from './../pages/reset/reset';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
