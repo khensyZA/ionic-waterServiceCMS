@@ -43,7 +43,7 @@ export class LoginPage {
         Email:['',Validators.compose([Validators.required,Validators.minLength(3)])],
 
         Password:['',Validators.compose([Validators.required,Validators.minLength(6),
-          Validators.pattern('[0-9]'),Validators.pattern('[a-zA-Z]*')])]
+         ])]
       })
   }
 

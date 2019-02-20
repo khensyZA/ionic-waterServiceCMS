@@ -1,5 +1,9 @@
 page-home {
 
+       .scroll-content {
+        overflow: hidden !important;
+    }
+
     .main{
 
           
@@ -90,6 +94,42 @@ page-home {
 //  }
 
  .row:last-child .col {
-     border-bottom: solid 1px grey;
+     border-bottom: solid 0px grey;
  }
+ #ActionButton{
+
+    height:10px ;
+    width:20px;
+ }
+ .card{
+
+    height:40px;
+    width:110px ;
+
+
+ }
+ .card1{
+
+    height:20px;
+    width:55px ;
+
+
+ }
+ .row{
+
+    height:100%;
+    width:100%;
+ }
+
+ .cols1{
+
+    height:100%;
+    width:30% ;
+
+}
+.cols12{
+
+    height:100%;
+    width:70%;
+}
 }

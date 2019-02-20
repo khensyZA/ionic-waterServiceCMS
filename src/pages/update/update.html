@@ -8,67 +8,109 @@
 
   <ion-navbar color="dark">
     <ion-title  text-center>TAPS</ion-title>
+    <ion-buttons outline end> 
+        <button color="primary" ion-button (click)="click()">
+            <ion-icon name="close" color="light"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
+  
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list class="outline">
-    <ion-item no-lines class="item1"></ion-item>
-     <h3>Accessible time</h3>
-    
-          <ion-item class="op">
-          <ion-label color="dark" text-wrap>Opening time</ion-label>
-          <ion-select [(ngModel)]="starttime">
-          <ion-option text-wrap *ngFor="let start of startTime">{{start}}</ion-option>
-          </ion-select>
-          </ion-item>
-    
-    <br>
-          <ion-item class="op">
-          <ion-label color="dark" text-wrap>Closing time</ion-label>
-          <ion-select   [(ngModel)]="endtime">
-          <ion-option text-wrap *ngFor="let start of endTime">{{start}}</ion-option>
-          </ion-select>
-          </ion-item>
-       </ion-list>
-    
+<ion-content padding class="content">
+    <div *ngIf="isChecked" text-center class="outline"  style="text-align:center"> 
         
-        <ion-list  radio-group [(ngModel)]="reliable" class="outline">
-        <ion-item no-lines text-center  class="item1"></ion-item>
-          <h3>Reliable</h3>
+        <ion-list *ngFor="let tap of taps" class="row header" text-center>
           
-            
-        <ion-item class="item1">
-        <ion-label color="dark">Yes</ion-label>
-        <ion-radio value="Yes"></ion-radio>
-        </ion-item>
-            
-        <ion-item class="item1">
-        <ion-label color="dark">No</ion-label>
-        <ion-radio value="No"></ion-radio>
-        </ion-item>
-    </ion-list>
-      
-    
-          
-      <ion-list radio-group [(ngModel)]="safety" class="outline">
-      <ion-item no-lines text-center  class="item1"></ion-item>
-      <h3>Safety</h3> 
-            
-               <ion-item  class="item1">
-               <ion-label color="dark">Yes</ion-label>
-               <ion-radio value="Yes"></ion-radio>
-               </ion-item>
-         <br>
-               <ion-item  class="item1">
-                 <ion-label color="dark">No</ion-label>
-                 <ion-radio value="No"></ion-radio>
-               </ion-item>
-       </ion-list>
-        
-    <br>
+          <ion-item ><span>Tap ID: </span>{{tap.id}}</ion-item><br><br>
+          <ion-item ><span>Time: </span>{{tap.time}}</ion-item><br><br>
+          <ion-item ><span>Safe: </span>{{tap.safety}}</ion-item><br><br>
+          <ion-item><span>Reliable: </span>{{tap.reliable}}</ion-item><br><br>
+       
+          <br><br><br><br>
 
-  <button ion-button full block  color="dark" (click)="updateTap()">update</button>
+          <!-- <button ion-button item-end icon-start color="dark" (click)="updateTp(tap.key)">Update</button>
+          <button ion-button item-end icon-start color="dark" (click)="deleteTap(tap.key)">Delete</button> -->
+
+          <ion-footer class="footer">
+              <div padding style="text-align:center">
+               <button ion-button clear  class="outline" (click)="updateTp(tap.key)">Update</button> 
+                  <button ion-button clear  class="outline"  (click)="deleteTaps(tap.key)">Delete</button>        
+          </div>
+          </ion-footer>
+         
+        </ion-list>
+    
+    </div>
+    
+    <div *ngIf="isUpdate">
+        <ion-list class="outline">  
+            <ion-item no-lines class="item1"></ion-item>
+             <h3>Accessible time</h3>
+            
+                  <ion-item class="op">
+                  <ion-label color="dark" text-wrap>Opening time</ion-label>
+                  <ion-select [(ngModel)]="starttime">
+                  <ion-option text-wrap *ngFor="let start of startTime">{{start}}</ion-option>
+                  </ion-select>
+                  </ion-item>
+            
+            <br>
+                  <ion-item class="op">
+                  <ion-label color="dark" text-wrap>Closing time</ion-label>
+                  <ion-select   [(ngModel)]="endtime">
+                  <ion-option text-wrap *ngFor="let start of endTime">{{start}}</ion-option>
+                  </ion-select>
+                  </ion-item>
+               </ion-list>
+            
+                
+                <ion-list  radio-group [(ngModel)]="reliable" class="outline">
+                <ion-item no-lines text-center  class="item1"></ion-item>
+                  <h3>Reliable</h3>
+                  
+                    
+                <ion-item class="item1">
+                <ion-label color="dark">Yes</ion-label>
+                <ion-radio value="Yes"></ion-radio>
+                </ion-item>
+                    
+                <ion-item class="item1">
+                <ion-label color="dark">No</ion-label>
+                <ion-radio value="No"></ion-radio>
+                </ion-item>
+            </ion-list>
+              
+            
+                  
+              <ion-list radio-group [(ngModel)]="safety" class="outline">
+              <ion-item no-lines text-center  class="item1"></ion-item>
+              <h3>Safety</h3> 
+                    
+                       <ion-item  class="item1">
+                       <ion-label color="dark">Yes</ion-label>
+                       <ion-radio value="Yes"></ion-radio>
+                       </ion-item>
+                 <br>
+                       <ion-item  class="item1">
+                         <ion-label color="dark">No</ion-label>
+                         <ion-radio value="No"></ion-radio>
+                       </ion-item>
+               </ion-list>
+                
+            <br>
+
+
+            
+              
+                 <button ion-button full color="dark"  (click)="updateTap()">SAVE</button> 
+                       
+          
+             
+          
+         
+    </div>
+ 
 </ion-content>

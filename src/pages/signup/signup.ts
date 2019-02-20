@@ -1,12 +1,14 @@
-import { LoginPage } from '../pages/login/login';
-import { ProfileProvider } from './../../providers/profile/profile';
 import { HomePage } from './../home/home';
 import { AuthProvider } from './../../providers/auth/auth';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Alert,Loading, LoadingController, AlertController, ToastController } from 'ionic-angular';
-import firebase, { User} from 'firebase/app';
-import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { IonicPage, NavController, NavParams, Alert, AlertController, LoadingController ,Loading} from 'ionic-angular';
+import { ThrowStmt } from '@angular/compiler';
+import { LoginPage } from '../login/login';
+import { FormBuilder, FormGroup, Validators,ValidatorFn,AbstractControl } from '@angular/forms';
+import { ProfileProvider } from './../../providers/profile/profile';
+// 
+
+
 /**
  * Generated class for the SignupPage page.
  *
@@ -20,16 +22,23 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl } from
   templateUrl: 'signup.html',
 })
 export class SignupPage {
- public userForm:FormGroup;
+
+  private load:Loading;
 
   firstName:string;
-  lastName:string;
+  lastName: string;
   email:string;
   password:string;
- constructor(public navCtrl: NavController, private profilePROV:ProfileProvider, private loadingCTR: LoadingController,
-    private alertCTR: AlertController, private authPROV: AuthProvider,public FB:FormBuilder) {
+  confirm: string;
 
-            this.userForm= this.FB.group({
+  userForm:FormGroup;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  private alertCtrl:AlertController,private profile:ProfileProvider,
+  private loadingCtrl:LoadingController,public FB:FormBuilder,
+  private auth:AuthProvider) {
+
+  this.userForm= this.FB.group({
   
               firstName:['',Validators.compose([Validators.required,
               Validators.minLength(3),
@@ -65,21 +74,21 @@ export class SignupPage {
      if(!this.userForm.valid){
      console.log(this.userForm.valid);
      }else{
-      let loading = this.loadingCTR.create({
-        content: 'Please wait..'
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
       });
     
       loading.present();
-     this.authPROV.signUp(this.userForm.value.email,this.userForm.value.password)
-     .then(authPROV =>{
+     this.auth.signUp(this.userForm.value.email,this.userForm.value.password)
+     .then(auth =>{
       loading.dismiss();
      this.load.dismiss().then(()=>{
-     this.profilePROV.UserDetails(this.userForm.value.firstName, this.userForm.value.lastName) 
+     this.profile.UserDetails(this.userForm.value.firstName, this.userForm.value.lastName) 
      .then(() => {
      this.userForm.reset();
        })
        
-       const alert = this.alertCTR.create({
+       const alert = this.alertCtrl.create({
         subTitle:"You are successfully registered",
         buttons: [{
           text:'Ok',
@@ -94,7 +103,7 @@ export class SignupPage {
       },error=>{
         this.load.dismiss().then(()=>{
           
-        const alert = this.alertCTR.create({
+        const alert = this.alertCtrl.create({
         subTitle:'The email is alread in use by another account',
         buttons:[{text:'ok',role:'cancel'}]
           })
@@ -104,7 +113,7 @@ export class SignupPage {
         })
       })
     }
-    this.load=this.loadingCTR.create();
+    this.load=this.loadingCtrl.create();
   }
   gotosignin(){
     this.navCtrl.push(LoginPage);
@@ -123,4 +132,6 @@ export class SignupPage {
 gotosignup(){
   this.navCtrl.push(SignupPage);
 }
+
 }
+

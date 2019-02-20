@@ -1,79 +1,84 @@
 <ion-header>
   <ion-navbar color="dark">
-    <ion-title>
-      
+      <!-- <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button> -->
+    <ion-title color="primary" text-center>
+        WaterService
     </ion-title>
-    <ion-buttons outline start> 
-     
-      <!-- <button color="pin" ion-button outline (click)="login()">
-        Sign in
-      </button> -->
-      <button color="pin" ion-button outline (click)="logout()"><ion-icon name="log-out"></ion-icon>
-      </button>
-     
-      </ion-buttons>
-      <ion-buttons>
-        <button color="pin" (click)="changeHome()" ion-button outline >
-          <ion-icon name="home"></ion-icon>
-        </button>
-        <button color="pin" (click)="changeTap()" ion-button outline>
-          Taps
-        </button>
-        <button color="danger" (click)=" changeTruck()" ion-button outline>
-          Truck
-        </button>
-      </ion-buttons>
+   
+  
   </ion-navbar>
 </ion-header>
 
-<!-- <ion-content padding class="main" >
-<div id="map"></div>
+<ion-content padding class="content">
 
-<div class="wrapper">
-
-  <div  *ngIf="isTap">
+    <!-- <button ion-button outline large   color="primary" (click)="changeTap()" >TAP</button>
+    <button ion-button outline large  color="primary" (click)=" changeTruck()">TRUCK</button> -->
 
 
-<br> -->
+ 
+          <!-- <div  *ngIf="isTap" text-center>
+          
 
-
-<ion-content padding class="main" text-center>
-
-<div *ngIf="isHome" id="map"></div>
-
-<div *ngIf="isTap">
-
-  <h2 text-center>TAP RECORDS</h2>
-  <div text-center>
-  <ion-row class="row header" text-center>
-    <ion-col col-1 class="chead">ID</ion-col>
-    <br>      
-    <ion-col col-3 class="chead">Time</ion-col>
-    <br>
-    <ion-col col-2 class="chead">Reliable</ion-col>
-    <br>
-    <ion-col col-2 class="chead">Safe</ion-col>
-    <br>
-    <ion-col col-4 class="chead">Action</ion-col>
-   
-    </ion-row>
-    <ion-row *ngFor="let tap of listTaps;let i=index" text-center>
-      <ion-col col-1>{{tap.id}}</ion-col>
-      <br>
-      <ion-col col-3>{{tap.time}}</ion-col>
-      <br>
-      <ion-col col-2>{{tap.reliable}}</ion-col>
-      <br>
-      <ion-col col-2>{{tap.safety}}</ion-col>
-      <br>
+                <ion-row class="row header" text-center>       
+                    <ion-card class="card"><ion-col col-3>Time</ion-col></ion-card>
+                    <ion-card class="card"><ion-col col-3>Reliable</ion-col></ion-card>
+                    <ion-card class="card"><ion-col col-3>safety</ion-col></ion-card>
+                    <ion-card class="card"><ion-col col-3>Action</ion-col></ion-card>
+                    </ion-row>
          
-      <ion-col col-2><button ion-button outline item-end icon-start color="dark" (click)="updateTap(tap.key)" ><ion-icon name="create"></ion-icon>Edit</button></ion-col>
-      <ion-col col-2><button ion-button outline item-end icon-start color="danger" (click)="deleteTaps(tap.key)"><ion-icon name="trash" color="danger"></ion-icon>Delete</button></ion-col>
-      </ion-row>
-    </div>
-  </div>
+                  
+            
+                <ion-row *ngFor="let tap of listTaps;let i=index" text-center>
+                   
+                 <ion-card class="card"><ion-col col-3>{{tap.time}}</ion-col></ion-card>
+                 
+                  <ion-card class="card"><ion-col col-3>{{tap.reliable}}</ion-col></ion-card>
+               
+                <ion-card class="card"><ion-col col-3>{{tap.safety}}</ion-col></ion-card>
+                  
+                     
+            
 
+            <ion-col col-1.5><button ion-button clear item-end icon-start color="dark" id="ActionButton" (click)="updateTap(tap.key)" ><ion-icon name="create"></ion-icon></button></ion-col>
+        
+             <ion-col col-1.5><button ion-button clear item-end icon-start color="danger"   id="ActionButton" (click)="deleteTaps(tap.key)"><ion-icon name="trash" color="danger"></ion-icon></button></ion-col>
+           
+            </ion-row>
+                
+              </div>
 
+              <div *ngIf="isTruck" text-center>
+                  
+                      <ion-row class="row header" text-center>
+                        
+                          <ion-col col-3>Time</ion-col>
+                          <ion-col col-3>liters</ion-col>
+                          <ion-col col-3>Reliable</ion-col>
+                          <ion-col col-3>Number of days</ion-col>
+                          <ion-col col-3>Action</ion-col>
+                          <ion-col col-2>Delete</ion-col>
+                      </ion-row>
+                      <ion-row *ngFor="let truck of listTrucks;let i=index" text-center>
+                        <ion-col col-3>{{truck.time}}</ion-col>
+                        <ion-col col-3>{{truck.liters}}</ion-col>
+                        <ion-col col-3>{{truck.reliable}}</ion-col>
+                        <ion-col col-3>{{truck.days}}</ion-col>
+                        <ion-col col-3><button ion-button outline item-end icon-start color="dark" (click)="updateTruck(truck.key)"><ion-icon name="create"></ion-icon></button></ion-col>
+                        <ion-col col-3><button ion-button outline item-end icon-start color="danger" (click)="deleteTruk(truck.key)"><ion-icon name="trash" color="danger"></ion-icon></button></ion-col>
+                      </ion-row>
+                 
+              </div>  -->
+           
+           
+       
+         
+       
+
+            <div id="map"></div>
+
+        
 
   <div *ngIf="isTruck">
       <h2 text-center>TRUCK RECORDS</h2>

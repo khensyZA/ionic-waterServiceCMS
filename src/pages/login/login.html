@@ -22,7 +22,7 @@
 		
 		<p ion-text color="danger" class="items" *ngIf="userForm.get('Password').hasError('minLength') && userForm.get('Password').touched" class="invalid">Field require a minimum of 6 characters!</p>
 		
-		<p ion-text color="danger" class="items" *ngIf="userForm.get('Password').hasError('pattern') && userForm.get('Password').touched" class="invalid">Enter the correct password!</p>
+		<!-- <p ion-text color="danger" class="items" *ngIf="userForm.get('Password').hasError('pattern') && userForm.get('Password').touched" class="invalid">Enter the correct password!</p> -->
 		
 <br>
 			<button type="submit" id="login-button">Login</button>
@@ -31,7 +31,7 @@
 			 
 		<p style="color:#53cde2"  (click)="reset()">Forgot password?</p>
 		<br>
-		<p style="color:#53cde2">Don't have an account?<a style="color:#022030e8" (click)="singup()"> Register</a></p>
+		<p style="color:#53cde2">Don't have an account?<a style="color:#005794" (click)="singup()"> Register</a></p>
 	
 	</div>
 
