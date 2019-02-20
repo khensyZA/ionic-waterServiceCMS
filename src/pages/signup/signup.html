@@ -22,7 +22,7 @@
    <form [formGroup]="userForm" class="form" (ngSubmit)="signUp()" novalidate>
  
        <ion-item no-lines  class="items" [ngClass]="{'error-border':!userForm.get('firstName').valid && userForm.get('firstName').touched}">
-        <input type="text" formControlName="firstName" Form placeholder="firstName">
+        <input type="text" formControlName="firstName" Form placeholder="First Name">
       
        </ion-item>
  
@@ -36,7 +36,7 @@
  
  
        <ion-item no-lines  class="items" [ngClass]="{'error-border':!userForm.get('lastName').valid && userForm.get('lastName').touched}">
-       <input type="text" formControlName="lastName"  Form placeholder="lastName" >
+       <input type="text" formControlName="lastName"  Form placeholder="Last Name" >
        </ion-item>
  
        
@@ -49,7 +49,7 @@
  
  
        <ion-item no-lines class="items" [ngClass]="{'error-border':!userForm.get('email').valid && userForm.get('email').touched}">
-       <input formControlName="email" type="email"  Form placeholder="email"> 
+       <input formControlName="email" type="email"  Form placeholder="Email"> 
        </ion-item>
  
       <p ion-text color="danger" *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched" class="invalid">Email field is required!</p>
@@ -60,7 +60,7 @@
  
  
        <ion-item no-lines class="items" [ngClass]="{'error-border':!userForm.get('password').valid && userForm.get('password').touched}">
-       <input formControlName="password" type="password" Form placeholder="password">
+       <input formControlName="password" type="password" Form placeholder="Password">
        </ion-item>
  
        <p ion-text color="danger" *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched" class="invalid">Password is required!</p>
@@ -69,7 +69,7 @@
       
  
        <ion-item no-lines class="items" [ngClass]="{'error-border':!userForm.get('confirm').valid && userForm.get('confirm').touched}">
-        <input formControlName="confirm" type="password" Form placeholder="confirm">
+        <input formControlName="confirm" type="password" Form placeholder="Confirm">
        </ion-item>
  
        <p ion-text color="danger" *ngIf="userForm.get('confirm').hasError('minlength') && userForm.get('confirm').touched" class="invalid">Confirm password minimum length is 6!</p>
@@ -85,7 +85,7 @@
        </div>
        
        <div  style="text-align:center" padding>
-         <p style="color:#66bfbf" class="p">Or, <a style="color:#005794"(click)="gotosignin()">Log in</a></p>
+         <p style="color:#66bfbf" class="p">Or, <a style="color:#022030e8"(click)="gotosignin()">Log in</a></p>
       </div>
 
    </form>
