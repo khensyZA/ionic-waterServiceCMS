@@ -1,3 +1,4 @@
+import { Chart } from 'chart.js';
 import { ResetPage } from './../pages/reset/reset';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -16,15 +17,11 @@ import { MapPage } from '../pages/map/map';
 import { MarkersProvider } from '../providers/markers/markers';
 import { Geofence } from '@ionic-native/geofence/ngx';
 import { LoginPage } from '../pages/login/login';
-<<<<<<< HEAD
 import { AuthProvider } from '../providers/auth/auth';
 import { ProfileProvider } from '../providers/profile/profile';
 import { SignupPage } from '../pages/signup/signup';
-=======
-import { SignupPage } from '../pages/signup/signup';
 import { ChartsPage } from '../pages/charts/charts';
 import { ChartsModule } from 'ng2-charts';
->>>>>>> 1b6c38791d87ce2f47874e810543812882174865
 
  var config = {
     apiKey: "AIzaSyCDA2SmyMOpqB49eOYtL566O6_QZOQL9zQ",
@@ -42,10 +39,7 @@ import { ChartsModule } from 'ng2-charts';
     UpdatePage,
     LoginPage,
     MapPage,
-<<<<<<< HEAD
-=======
     ChartsPage,
->>>>>>> 1b6c38791d87ce2f47874e810543812882174865
     SignupPage,
     UpdatetruckPage,
     HomePage,
@@ -62,10 +56,7 @@ import { ChartsModule } from 'ng2-charts';
     MyApp,
     UpdatePage,
     SignupPage,
-<<<<<<< HEAD
-=======
     ChartsPage,
->>>>>>> 1b6c38791d87ce2f47874e810543812882174865
     LoginPage,
     MapPage,
     UpdatetruckPage,

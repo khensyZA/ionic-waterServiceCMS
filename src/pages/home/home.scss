@@ -5,8 +5,7 @@ page-home {
    //  }
 
     .main{
-
-          
+   
         background: url("/assets/imgs/waterservice.jpg");
         background-repeat: no-repeat;
          background-size: 180%;
@@ -25,6 +24,8 @@ page-home {
     #map{
         width: 100%;
         height: 65%;
+        // overflow: hidden;
+
 
         // margin-left:60px;
         // margin-top:40px;
@@ -33,81 +34,58 @@ page-home {
         // border-right-style: none;
          border-right: solid 2px grey;
     }
-<<<<<<< HEAD
-
-    .wrapper{
-        background:rgba(70, 70, 70, 0.6);
-    
-        position: absolute;
-        top: 50%;
-        // left: 0;
-        width: 90%;
-        height: 400px;
-        margin-top: 160px;
-         margin-left: 60px;
-        // margin-right: 80px;
-        overflow: hidden;
-        
-        &.form-success{
-            .container{
-                h1{
-                    transform: translateY(85px);
-                    
-                }
-            }
-        }
-    }
-    
-
-=======
     .piechart{
       background-color:limegreen;
       width: 50%;
       border-radius: 50%;
       height: 50%;
     }
->>>>>>> 1b6c38791d87ce2f47874e810543812882174865
  .header .col {
     background-color: #005792;
     color: white;
- 
+    border: solid 1px grey;
+    border-left: solid 1px grey;
+    border-right: solid 1px grey;
+    border-top: solid 2px grey;
  }
- .info{
-    background-color:edf9fc;
- }
+//  .info{
+//     // background-color:#edf9fc;
+//  }
 .chead{
     color: white;
 }
   .col {
 
   
-       border: solid 1px black;
+    border: solid 1px grey;
        border-bottom-style: none;
        border-right-style: none;
     //    border-top-style: none;
-       border-left-style: solid 2px black;
-       border-right: solid 1px black;
+    //    border-left-style: solid 2px black;
+    //    border-right: solid 1px black;
        float: left; 
-
-       border-radius: 2px;
-       border: solid 1px #005792;
-       border-bottom-style: none;
-       border-right-style: none;
+       border-bottom: solid 0px grey;
+    //    border-radius: 2px;
+    //    border: solid 1px #005792;
+      
+      
     //    border-top-style: none;
-       border-left-style: solid 2px grey;
-       border-right: solid 1px grey;
+    //    border-left-style: solid 2px grey;
+       
+        border-right: solid 1px grey;
     //    float: left; 
        position: relative;
     //    left: 60px;
-       
+      
   }
 
-//   .col:last-child {
-//     border-right: solid 1px grey;
-//  }
+  .col:last-child {
+     border-right: solid 2px grey;
+  }
+
 
  .row:last-child .col {
-     border-bottom: solid 0px grey;
+      border-bottom: solid 1px grey;
  }
  #ActionButton{
 
@@ -146,44 +124,52 @@ page-home {
     width:70%;
 }
 
+.scroll-content {
+    overflow: hidden !important;
+}
+
 .containers {
-   background:rgb(231, 238, 243);
-   height: 30%;
+//    background:rgb(231, 238, 243);
+    height: 30%;
    width: 100%;
-   padding: 1px;
-   box-sizing: border-box;
-   border: 1px solid black;
-   margin: 2vh auto;
+//    overflow-y: hidden;
+//    padding: 1px;
+    // box-sizing: border-box;
+     margin: 2vh auto;
  }
  
  ul {
    height: 90%;
    width: 100%;
-   padding: 0;
-   background:lightskyblue;
+   padding: 0px;
+//   background:lightskyblue;
    list-style-type: none;
-   box-sizing: 1px;
-   overflow-y: scroll;
-   overflow-x: hidden;
-   white-space:nowrap;
+//   box-sizing: 1px;
+ overflow-y: scroll;
+    overflow-x: hidden;
+     white-space:nowrap;
+    
  }
  
  li {
-   padding: 10px;
-   background: #edf9fc;
-   overflow-y: scroll;
-   overflow-x: hidden;
-   border: 1px solid black;
+    padding: 10px;
+//    background: #edf9fc;
+    overflow-y: scroll;
+    overflow: hidden;
+//    border-bottom: 1px solid grey;
  }
- .container {
-   // width: 500px;
-   // margin: 20px;
-   // background: #fff;
-   // padding: 20px;
-   // overflow: hidden;
-   // float: left;
-   padding: 10px;
- }
+
+
+//  .container {
+//     overflow-y: hidden;
+//    // width: 500px;
+//    // margin: 20px;
+//    // background: #fff;
+//    // padding: 20px;
+//    // overflow: hidden;
+//    // float: left;
+//    padding: 10px;
+//  }
  
  .horizontal .progress-bar {
    float: left;
