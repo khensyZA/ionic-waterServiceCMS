@@ -104,8 +104,13 @@ export class SignupPage {
         this.load.dismiss().then(()=>{
           
         const alert = this.alertCtrl.create({
-        subTitle:'The email is alread in use by another account',
-        buttons:[{text:'ok',role:'cancel'}]
+        subTitle:'The email is already in use by another account',
+        buttons:[{text:'ok',
+        // role:'cancel',
+        handler:data=>{
+          this.navCtrl.setRoot(LoginPage)
+          }
+      }]
           })
 
 
@@ -115,6 +120,8 @@ export class SignupPage {
     }
     this.load=this.loadingCtrl.create();
   }
+
+  
   gotosignin(){
     this.navCtrl.push(LoginPage);
   }

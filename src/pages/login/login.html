@@ -1,6 +1,10 @@
 <ion-content>
+
+	<div class="logo"></div>
 <div class="wrapper">
 	<div class="container">
+
+		
 		<h1>Water Service</h1>
 		
 		<form [formGroup]="userForm" class="form" (ngSubmit)="dashboard()" novalidate>
@@ -23,13 +27,13 @@
 		<p ion-text color="danger" class="items" *ngIf="userForm.get('Password').hasError('minLength') && userForm.get('Password').touched" class="invalid">Field require a minimum of 6 characters!</p>
 		
 		<!-- <p ion-text color="danger" class="items" *ngIf="userForm.get('Password').hasError('pattern') && userForm.get('Password').touched" class="invalid">Enter the correct password!</p> -->
-		
+		<p style="color:#53cde2" (click)="reset()">Forgot password?</p>
 <br>
 			<button type="submit" id="login-button">Login</button>
 
 			 </form>
 			 
-		<p style="color:#53cde2"  (click)="reset()">Forgot password?</p>
+		
 		<br>
 		<p style="color:#53cde2">Don't have an account?<a style="color:#022030e8" (click)="singup()"> Register</a></p>
 	
