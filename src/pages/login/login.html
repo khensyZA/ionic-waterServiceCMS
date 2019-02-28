@@ -1,25 +1,27 @@
 <ion-content>
 
-	<div class="logo"></div>
+<div class="logo"></div>
+<h1 text-center>Water Service</h1>
 <div class="wrapper">
-	<div class="container">
+
+<div class="container">
 
 		
-		<h1>Water Service</h1>
 		
-		<form [formGroup]="userForm" class="form" (ngSubmit)="dashboard()" novalidate>
+		
+	<form [formGroup]="userForm" class="form" (ngSubmit)="dashboard()" novalidate>
 
 			<ion-item no-lines class="items" [ngClass]="{'error-border':!userForm.get('Email').valid && userForm.get('Email').touched}">
 			<input type="text" formControlName="Email" Form placeholder="Email">
 			</ion-item>
 
-		<p ion-text color="danger" class="items" *ngIf="userForm.get('Email').hasError('required') && userForm.get('Email').touched" class="invalid" >Email field is required!</p>
+	  <p ion-text color="danger" class="items" *ngIf="userForm.get('Email').hasError('required') && userForm.get('Email').touched" class="invalid" >Email field is required!</p>
 		
-  	<p ion-text color="danger" class="items" *ngIf="userForm.get('Email').hasError('minlength') && userForm.get('Email').touched" class="invalid">Field requires 3 or more characters!</p>
+  	   <p ion-text color="danger" class="items" *ngIf="userForm.get('Email').hasError('minlength') && userForm.get('Email').touched" class="invalid">Field requires 3 or more characters!</p>
 	  
 
 		<ion-item no-lines class="items" [ngClass]="{'error-border':!userForm.get('Password').valid && userForm.get('Password').touched}">
-    <input type="password" formControlName="Password" placeholder="Password">
+        <input type="password" formControlName="Password" placeholder="Password">
 		</ion-item>
 
 		<p ion-text color="danger" class="items" *ngIf="userForm.get('Password').hasError('required') && userForm.get('Password').touched" class="invalid">Password field is required!</p>
@@ -27,15 +29,15 @@
 		<p ion-text color="danger" class="items" *ngIf="userForm.get('Password').hasError('minLength') && userForm.get('Password').touched" class="invalid">Field require a minimum of 6 characters!</p>
 		
 		<!-- <p ion-text color="danger" class="items" *ngIf="userForm.get('Password').hasError('pattern') && userForm.get('Password').touched" class="invalid">Enter the correct password!</p> -->
-		<p style="color:#53cde2" (click)="reset()">Forgot password?</p>
-<br>
+		<h6 style="color:#005792" (click)="reset()">Forgot password?</h6>
+
+      <br>
 			<button type="submit" id="login-button">Login</button>
 
-			 </form>
-			 
-		
+	 </form>
+
 		<br>
-		<p style="color:#53cde2">Don't have an account?<a style="color:#022030e8" (click)="singup()"> Register</a></p>
+		<p style="color:#005792">Don't have an account?<a style="color:#03c3f3" (click)="singup()"> Register</a></p>
 	
 	</div>
 

@@ -1,6 +1,7 @@
 page-signup {
  .content{
-	    background-color: #75a0bd;
+	background-color:#4a9dd4;
+	    // background-color: #75a0bd;
         overflow-y: scroll;
 		overflow-x: hidden;
    } 
@@ -48,17 +49,28 @@ body{
 }
 
 .wrapper{
-    background:rgba(70, 70, 70, 0.6);
-
-	position: absolute;
-	top: 50%;
-	// left: 0;
-	width: 75%;
-	height: 700px;
-	margin-top: -280px;
-	 margin-left: 160px;
-	// margin-right: 80px;
-	overflow: hidden;
+	background:#e6e6ecc4;
+	border-radius: 20px;
+		position: absolute;
+		top: 55%;
+	 // left: 0;
+		width: 50%;
+		height: 700px;
+		margin-top: -380px;
+	   margin-left: 560px;
+		// margin-right: 80px;
+		 overflow: hidden;
+	// background:#e6e6ecc4;
+	// border-radius: 20px;
+	// position: absolute;
+	// top: 50%;
+	// // left: 0;
+	// width: 75%;
+	// height: 700px;
+	// margin-top: -280px;
+	//  margin-left: 160px;
+	// // margin-right: 80px;
+	// overflow: hidden;
 	
 	&.form-success{
 		.container{
@@ -82,7 +94,7 @@ body{
 		transition-duration: 1s;
 		transition-timing-function: ease-in-put;
         font-weight: 200;
-		color:white;
+		color:#005792;
 		font-family: Arial, Helvetica, sans-serif;
 	}
 
@@ -132,7 +144,7 @@ form{
 	button{
 		appearance: none;
 		outline: 0;
-		background-color: #005792;
+		background-color: #03c3f3;
 		border: 0;
 		padding: 10px 15px;
 		color: white;
@@ -143,7 +155,7 @@ form{
 		transition-duration: 0.25s;
 		
 		&:hover{
-			background-color: #53cde2;
+			background-color: #005792;
 		}
 	}
 }

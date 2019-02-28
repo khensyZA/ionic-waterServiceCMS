@@ -1,6 +1,6 @@
 page-reset {
     .content{
-        background-color: #75a0bd;
+        background-color:#4a9dd4;
            
         
        } 
@@ -47,15 +47,15 @@ page-reset {
     }
     
     .wrapper{
-        background:rgba(70, 70, 70, 0.6);
-    
+        background:#e6e6ecc4;
+        border-radius: 20px;
         position: absolute;
         top: 50%;
         // left: 0;
-        width: 75%;
+        width: 50%;
         height: 400px;
         margin-top: -250px;
-         margin-left: 160px;
+        margin-left: 560px;
         // margin-right: 80px;
         overflow: hidden;
         
@@ -131,7 +131,7 @@ page-reset {
         button{
             appearance: none;
             outline: 0;
-            background-color: #005792;
+            background-color: #03c3f3;;
             border: 0;
             padding: 10px 15px;
             color: white;
@@ -142,7 +142,7 @@ page-reset {
             transition-duration: 0.25s;
             
             &:hover{
-                background-color: #53cde2;
+                background-color:  #005792;
             }
         }
     }
